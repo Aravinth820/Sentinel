@@ -1,0 +1,32 @@
+{
+  "name": "sentinel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+    "private":true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "develop:webapp": "yarn workspace @project/webapp develop -p 8000",
+    "clean:webapp": "yarn workspace @project/webapp clean",
+    "build:webapp": "NODE_OPTIONS=--max-old-space-size=8192 yarn workspace @project/webapp build"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+    "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "babel-loader": "^8.1.0",
+    "lerna": "^7.0.2",
+    "react-is": "^18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aravinth820/Sentinel.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Aravinth820/Sentinel/issues"
+  },
+  "homepage": "https://github.com/Aravinth820/Sentinel#readme"
+}
