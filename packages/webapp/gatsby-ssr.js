@@ -7,6 +7,10 @@
 /**
  * @type {import('gatsby').GatsbySSR['onRenderBody']}
  */
-exports.onRenderBody = ({ setHtmlAttributes }) => {
-  setHtmlAttributes({ lang: `en` })
-}
+
+
+import CgateAppShell from "./src/components/AppShell/GlobalAppShell";
+
+
+
+export const wrapPageElement=CgateAppShell
