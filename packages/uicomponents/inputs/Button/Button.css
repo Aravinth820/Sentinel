@@ -1,0 +1,261 @@
+.primaryButtonCondensed {
+    font-family: 'Inter' !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    font-size: 12px !important;
+    line-height: 16px !important;
+    padding: 4px 8px !important;
+    gap: 8px !important;
+    height: 24px !important;
+    /* left: 222px;
+    top: 518px; */
+    background-color: #3874FF !important;
+    border-radius: 4px !important;
+    color: #FFFFFF !important;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    letter-spacing: normal !important;
+    text-transform: none !important;
+    /* position: absolute;
+    flex: none;
+    order: 0;
+    flex-grow: 0; */
+  }
+  
+  .primaryButtonCondensed:hover {
+    box-shadow: 0px 3px 6px rgba(53, 110, 242, 0.58) !important;
+    background-color: #3874FF !important;
+    color: #FFFFFF !important;
+    border-radius: 4px !important;
+  }
+  
+  .primaryButtonCondensed:disabled {
+    background: #9497A1 !important;
+    border-radius: 4px !important;
+    /* left: 608px;
+    top: 518px; */
+    color: #FFFFFF !important;
+  }
+  
+  
+  .secondaryButtonNormal {
+    font-family: 'Inter' !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    font-size: 12px !important;
+    line-height: 16px !important;
+    padding: 8px 16px !important;
+    gap: 8px !important;
+    height: 32px !important;
+    /* left: 222px;
+    top: 824px; */
+    background-color: rgba(56, 116, 255, 0.1) !important;
+    border: 1px solid #3874FF !important;
+    border-radius: 4px !important;
+    color: #3874FF !important;
+    /* transition: box-shadow 0.2s ease-in-out; */
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    letter-spacing: normal !important;
+    text-transform: none !important;
+    /* position: absolute;
+    flex: none;
+    order: 0;
+    flex-grow: 0; */
+  }
+  
+  .secondaryButtonNormal:hover {
+    box-shadow: 0px 3px 6px rgba(53, 110, 242, 0.58) !important;
+    border: 1px solid #3874FF !important;
+    background-color: rgba(56, 116, 255, 0.1) !important;
+    color: #3874FF !important;
+    border-radius: 4px !important;
+  }
+  
+  .secondaryButtonNormal:disabled {
+    background-color: #EFF0F1 !important;
+    /* left: 608px;
+    top: 824px; */
+    color: #9B9FA8 !important;
+    border: 1px solid #9497A1 !important;
+    border-radius: 4px !important;
+  }
+  
+  
+  
+  .secondaryButtonCondensed {
+    font-family: 'Inter' !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    font-size: 12px !important;
+    line-height: 16px !important;
+    padding: 4px 8px !important;
+    gap: 8px !important;
+    height: 24px !important;
+    /* left: 222px;
+    top: 1162px; */
+    background-color: rgba(56, 116, 255, 0.1) !important;
+    border: 1px solid #3874FF !important;
+    color: #3874FF !important;
+    /* transition: box-shadow 0.2s ease-in-out; */
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    letter-spacing: normal !important;
+    text-transform: none !important;
+    /* position: absolute;
+    flex: none;
+    order: 0;
+    flex-grow: 0; */
+  }
+  
+  .secondaryButtonCondensed:hover {
+    border: 1px solid #3874FF !important;
+    box-shadow: 0px 3px 6px rgba(53, 110, 242, 0.58) !important;
+    border-radius: 4px !important;
+    color: #3874FF !important;
+  }
+  
+  .secondaryButtonCondensed:disabled {
+    background-color: #EFF0F1 !important;
+    /* left: 608px;
+    top: 1162px; */
+    color: #9B9FA8 !important;
+    border: 1px solid #9497A1 !important;
+    border-radius: 4px !important;
+  }
+  
+  
+  
+  .tertiaryButtonNormal {
+    font-family: 'Inter' !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    font-size: 12px !important;
+    line-height: 16px !important;
+    height: 32px !important;
+    color: #3874FF !important;
+    /* left: 415px;
+    top: 1808px;
+    transition: box-shadow 0.2s ease-in-out; */
+    display: flex !important;
+    align-items: center !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    padding: 4px 8px !important;
+    gap: 8px !important;
+    letter-spacing: normal !important;
+    text-transform: none !important;
+    /* position: absolute;
+    flex: none;
+    order: 0;
+    flex-grow: 0; */
+  }
+  
+  .tertiaryButtonNormal:hover {
+    box-shadow: 0px 3px 6px rgba(53, 110, 242, 0.58) !important;
+    border-radius: 4px !important;
+    color: #3874FF !important;
+    /* height: 24px !important; */
+    padding: 4px 8px !important;
+    gap: 8px !important;
+    background-color: #FFFFFF !important;
+    box-shadow: 0px 0px 13px #EEEEF8 !important;
+    border-radius: 4px !important;
+    font-weight: 600 !important;
+  }
+  
+  .tertiaryButtonNormal:disabled {
+    color: #9497A1 !important;
+    /* height: 16px !important; */
+  }
+  
+  
+  
+  .primaryButtonNormal {
+    height: 32px !important;
+    /* top: 180px;
+    left: 222px; */
+    border-radius: 4px !important;
+    border-style: none !important;
+    padding: 8px 16px !important;
+    gap: 8px !important;
+    background-color: #3874FF !important;
+    font-weight: 600 !important;
+    font-family: 'Inter' !important;
+    font-style: normal !important;
+    font-size: 12px !important;
+    line-height: 16px !important;
+    color: #FFFFFF !important;
+    /* transition: box-shadow 0.2s ease-in-out; */
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    letter-spacing: normal !important;
+    text-transform: none !important;
+    /* position: absolute;
+    flex: none;
+    order: 0;
+    flex-grow: 0; */
+  }
+  
+  .primaryButtonNormal:hover {
+    box-shadow: 0px 3px 6px rgba(53, 110, 242, 0.58) !important;
+    background-color: #3874FF !important;
+    color: #FFFFFF !important;
+    border-radius: 4px !important;
+  }
+  
+  .primaryButtonNormal:disabled {
+    background: #9497A1 !important;
+    border-radius: 4px !important;
+    color: #FFFFFF !important;
+  }
+  
+  .tertiaryButtonCondensed {
+  font-family: 'Inter' !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+  font-size: 12px !important;
+  line-height: 16px !important;
+  height: 24px !important;
+  color: #3874FF !important;
+  padding: 4px 8px !important;
+  gap: 8px !important;
+  /* left: 415px;
+  top: 1808px; */
+  /* flex: none;
+  order: 0;
+  flex-grow: 0; */
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: center !important;
+  letter-spacing: normal !important;
+  text-transform: none !important;
+  /* position: absolute;
+  transition: box-shadow 0.2s ease-in-out; */
+}
+
+.tertiaryButtonCondensed:hover {
+  box-shadow: 0px 0px 13px #EEEEF8 !important;
+  border-radius: 4px !important;
+  color: #3874FF !important;
+  /* height: 24px !important; */
+  padding: 4px 8px !important;
+  gap: 8px !important;
+  background-color: #FFFFFF !important;
+  box-shadow: 0px 0px 13px #EEEEF8 !important;
+  border-radius: 4px !important;
+  font-weight: 600 !important;
+}
+
+.tertiaryButtonCondensed:disabled {
+  color: #9497A1 !important;
+  /* height: 16px !important; */
+}
