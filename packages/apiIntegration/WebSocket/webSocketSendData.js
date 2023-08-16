@@ -3,6 +3,7 @@ const webSocketSendData = ({ jobId, userId, initialValue, changedValue, field, w
       const currentTime = new Date()
       const message = { jobId, timeStamp: currentTime.toString(), userId, initialValue, changedValue, field }
       const payload = {
+        _id: message.jobId,
         eventName: field,
         eventData: message
       }

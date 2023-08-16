@@ -126,6 +126,10 @@ const useStyles = makeStyles({
   },
   snackBar:{
   borderRadius: "4px",
+  '& .MuiAlert-message':{
+    overflow:'unset !important',
+    
+  }
  
   },
   checkIcon:{

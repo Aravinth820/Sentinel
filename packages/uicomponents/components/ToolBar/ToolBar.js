@@ -6,7 +6,7 @@ import SearchTextBox from '../../inputs/SearchTextBox'
 import { Popover } from '@mui/material';
 import Chips from '../../inputs/Chip';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import FilterAndSort from '../FilterAndSort.js/FilterandSort'
+import FilterAndSort from '../FilterAndSort/FilterandSort'
 import FilterList from '../../assests/images/filter_list.svg'
 import ArrowDown from '../../assests/images/arrow_dropdown.svg'
 import ArrowUp from '../../assests/images/arrowup_dropdown.svg'
@@ -679,8 +679,8 @@ const ToolBarReusable = ({ data, buttonComponent, buttonComponent1, searchBox, a
 
 
     return (
-        <AppBar position="static" color="default" className={classes.appBar}>
-            <Toolbar className={classes.toolbar}>
+        <AppBar position="static" color="default" className={classes.appBar} style={{marginTop:data?.name==='jobListPage'?'47px':''}}>
+            <Toolbar className={classes.toolbar} >
                 <Box className={classes.TextIconBox}>
                     {selectionIcon && (
                         <IconButton className={classes.IconButton}>
