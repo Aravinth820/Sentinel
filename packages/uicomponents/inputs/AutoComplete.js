@@ -6,6 +6,8 @@ import { TextField, Icon } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import errorImg from '../assests/images/errorImg.svg'
+import eventBus from '../../apiIntegration/WebSocket/eventBus';	
+import webSocketSendData from '../../apiIntegration/WebSocket/webSocketSendData';
 
 
 const filter = createFilterOptions();
@@ -14,33 +16,35 @@ const useStyles = makeStyles({
   
   
   autocomplete: {
+   
     "& .MuiInput-root:before": {
       
-      borderBottom: (props) => props?.showUnderline?'1px solid #9497A1 !important' :"none",
+      borderBottom: (props) => props?.showUnderline?'1px solid #EFF0F1 !important' :"none",
     },
     "& .MuiInput-root:after": {
-      borderBottom: "2px solid #1976d2 !important",
+      borderBottom: "1px solid  #3874FF !important",
     },
     "& .MuiInputBase-root.MuiInput-root:hover:not(.Mui-disabled, .Mui-error):before":
       {
         transition: "none !important",
-        borderBottom: "2px solid #1976d2 !important",
+        borderBottom: "1px solid #3874FF !important",
       },
     "& .MuiSvgIcon-root": {
       fontSize: "16px !important",
     },
   },
   popUpHover: {
+    
     "& .MuiInput-root:before": {
-      borderBottom: (props) => props?.showUnderline?'1px solid #949791 !important' :"none",
+      borderBottom: (props) => props?.showUnderline?'1px solid #EFF0F1 !important' :"none",
     },
     "& .MuiInput-root:after": {
-      borderBottom: "2px solid #1976d2 !important",
+      borderBottom: "1px solid #3874FF !important",
     },
     "& .MuiInputBase-root.MuiInput-root:hover:not(.Mui-disabled, .Mui-error):before":
       {
         transition: "none !important",
-        borderBottom: "2px solid #1976d2 !important",
+        borderBottom: "1px solid #3874FF !important",
       },
     "& .MuiAutocomplete-popupIndicator": {
       visibility: "hidden",
@@ -82,17 +86,17 @@ const useStyles = makeStyles({
     top: "10%",
    // width: "100%",
    "& input::placeholder": {
-    color:"#9497A1 !important",
-    opacity: "0.7",
+    // color:"#9497A1 !important",
+    // opacity: "0.7",
     textOverflow: "ellipsis",
-    fontWeight: "400 !important",
+    //fontWeight: "400 !important",
     },
     "& .MuiInput-root": {
       paddingLeft: "8px",
       paddingRight: "8px !important",
       fontFamily: "Inter",
       fontSize: "12px",
-      fontWeight:"600 !important",
+     fontWeight:"400 !important",
       height: (props) => props?.height?props?.height:"25px"
     },
     "& .MuiInput-input": {
@@ -157,7 +161,7 @@ const useStyles = makeStyles({
     padding: "0px",
 
     position: "absolute",
-    //marginLeft: "-2px",
+    marginLeft: "-2px",
     bottom: "0px",
 
     zIndex: "1",
@@ -166,10 +170,10 @@ const useStyles = makeStyles({
     padding: "0px",
 
     position: "absolute",
-
+   
     bottom: "0px",
     zIndex: "1",
-    //marginLeft: "2px",
+   
   },
   one: {
     visibility: "visible !important",
@@ -177,7 +181,19 @@ const useStyles = makeStyles({
   two: {
     visibility: "hidden !important",
   },
+  enteringText:{
+    '& .MuiInput-input':{
+      fontWeight:"600 !important",
+      //color:'red !important'
+    }
+  },
+  underline: {
+    '&:hover:not(.Mui-disabled):before': {
+      borderBottomColor: '#3874FF !important',
+    },
+  },
 });
+
 
 const AutoComplete = (props) => {
   const classes = useStyles(props);
@@ -196,11 +212,9 @@ const AutoComplete = (props) => {
     name,style
   } = props;
 
-  const [data, setData] = React.useState ("");
+  const [data, setData] = React.useState( "");
   const [isHovered, setIsHovered] = React.useState(false);
-  
-  
-  
+  const [isEntering, setEntering] = useState(false)
   const handleMouseEnter = () => {
     setIsHovered(true);
   };
@@ -211,10 +225,30 @@ const AutoComplete = (props) => {
 
   React.useEffect(() => {
     setData(props.value);
+   
   }, [props.value]);
+   const { ws, jobId, isWebSocketAlive, fieldKey, userId } = props.propData
 
-  const handleChange = (event, value) => {
-    
+   React.useEffect(() => {
+    eventBus.subscribeToEvent(fieldKey, (data) => {
+      setData(data.eventData.changedValue)
+    })
+    return () => {
+      eventBus.removeEventSubscription(fieldKey)
+    }
+  }, [fieldKey])
+
+ const handleInputFocus=(()=>{
+  setEntering(true)
+ 
+  })
+  const handleBlur=(()=>{
+    setEntering(false)
+      const wssData = { jobId: jobId, userId: userId, initialValue: data, changedValue: event.target.value, field: fieldKey, ws }
+   webSocketSendData(wssData)
+  })
+    const handleChange = (event, value) => {
+    setEntering(true)
       if (value === null) {
         setData(value);
         props.handledata(id, name, value,event);
@@ -241,145 +275,150 @@ const AutoComplete = (props) => {
   };
 
   return (
-    <Autocomplete
-    blurOnSelect ={true}
-      onMouseEnter={handleMouseEnter} // Handle mouse enter event
-      onMouseLeave={handleMouseLeave}
-      className={
+    <>
+      <Autocomplete
+      key={props.keyName}
+        onMouseEnter={handleMouseEnter} // Handle mouse enter event
+        onMouseLeave={handleMouseLeave}
+        //onInputChange={handleOptionChange}
+        onBlur={handleBlur}
+        onFocus={handleInputFocus}
+        className={
+          (!popUpHover || popUpHover === undefined) 
+            ? classes.autocomplete
+            :classes.popUpHover
+        }
+        popupIcon={<KeyboardArrowDownIcon />}
+        style={{ ...style }}
         
-        !popUpHover || popUpHover === undefined
-          ? classes.autocomplete
-          : classes.popUpHover
-      }
-      popupIcon={<KeyboardArrowDownIcon />}
-      style={{ ...style  }}
-      multiple={props.multiple}
-      options={option?.length > 0 ? option.map((option) => option.value) : []}
-      onChange={( event,value) => handleChange(event,value)}
-      error = {Boolean(error)}
-      classes={{
-        listbox: props.scrollInVisible
-          ? classes.optionsWithoutScroll
-          : classes.optionsWithScroll,
-        option: classes.optionsContainer,
-        paper: props.dropDownStyle ? classes.dropdown : null,
-      }}
-      filterOptions={(options, params) => {
-        const filtered = filter(options, params);
+        options={option?.length > 0 ? option.map((option) => option.value) : []}
+        onChange={(event, value) => handleChange(event, value)}
+        classes={{
+          listbox: props.scrollInVisible
+            ? classes.optionsWithoutScroll
+            : classes.optionsWithScroll,
+          option: classes.optionsContainer,
+          paper: props.dropDownStyle ? classes.dropdown : null,
+        }}
+        filterOptions={(options, params) => {
+          const filtered = filter(options, params);
 
-        if (params.inputValue !== "" && add === true) {
-          filtered.push({
-            inputValue: params.inputValue,
-            title: `Add "${params.inputValue}"`,
-          });
+          if (params.inputValue !== "" && add === true) {
+            filtered.push({
+              inputValue: params.inputValue,
+              title: `Add "${params.inputValue}"`,
+            });
+          }
+
+          return filtered.slice(0, 10);
+        }}
+        getOptionLabel={(option) => {
+          if (typeof option === "string") {
+            return option;
+          }
+          if (option.title) {
+            return option.title;
+          }
+
+          return option.inputValue;
+        }}
+        isOptionEqualToValue={(option, value) =>
+          option === value.title || option !== value.title
         }
+        value={data ? data : null}
+        renderInput={(params) => {
+          return (
+            <TextField
+              // error={(mandatory===true || label?.includes("*")||placeholder?.includes("*"))&& (data===""|| data===null || data===undefined)?true:false}
 
-        return filtered.slice(0, 200);
-      }}
-      getOptionLabel={(option) => {
-        if (typeof option === "string") {
-          return option;
-        }
-        if (option.title) {
-          return option.title;
-        }
-
-        return option.inputValue;
-      }}
-      isOptionEqualToValue={(option, value) =>
-        option === value.title || option !== value.title
-      }
-      name={name}
-      value={data ? data : null}
-      renderInput={(params) => {
-        return (
-          <TextField
-            // error={(mandatory===true || label?.includes("*")||placeholder?.includes("*"))&& (data===""|| data===null || data===undefined)?true:false}
-
-            //className={classes.root}
-            className={
-              !popUpHover || popUpHover === undefined
-                ? classes.root
-                : `${classes.root} ${classes.root2}`
-            }
-            {...params}
-            size="small"
-            label={label}
-           // style={{ width: "100%" }}
-            placeholder={placeholder}
-            variant="standard"
-            name={name}
-            InputProps={{
-              ...params.InputProps,
-              startAdornment: (
-                <>
-                  {params.InputProps.startAdornment}
-                  {startIcon && <InputAdornment>{startIcon}</InputAdornment>}
-                </>
-              ),
-              endAdornment: (
-                <>
-                  {params.InputProps.endAdornment}
-                  {endIcon && (
-                    <InputAdornment
-                     
-                      className={
-                        mandatory &&
-                        (popUpHover === undefined || popUpHover === false)
-                          ? classes.inputAdornment2
-                          : mandatory && isHovered && popUpHover
-                          ? classes.inputAdornment2
-                          : (mandatory === false || mandatory === undefined) &&
-                            (popUpHover === undefined || popUpHover === false)
-                          ? classes.inputAdornment2
-                          : (mandatory === false || mandatory === undefined) &&
-                            isHovered &&
-                            popUpHover
-                          ? classes.inputAdornment2
-                          : classes.inputAdornment
-                      }
-                    >
-                      {endIcon}
-                    </InputAdornment>
-                  )}
-
-                  {mandatory ? (
-                    <InputAdornment
-                      position="end"
-                    
-                    >
-                      <img
-                        src={errorImg}
-                        alt="Error icon"
+              className={
+                !popUpHover || popUpHover === undefined
+                  ?  `${classes.root}   ${isEntering && classes.enteringText}`
+                  : `${classes.root} ${classes.root2}  ${isEntering && classes.enteringText}`
+              }
+              {...params}
+              size="small"
+              label={label}
+              style={{ width: "100%" }}
+              placeholder={placeholder}
+              variant="standard"
+            
+              InputProps={{
+                classes: {
+                  underline: props.showUnderline?classes.underline:'',
+                },
+                ...params.InputProps,
+                startAdornment: (
+                  <>
+                    {params.InputProps.startAdornment}
+                    {startIcon && <InputAdornment>{startIcon}</InputAdornment>}
+                  </>
+                ),
+                endAdornment: (
+                  <>
+                    {params.InputProps.endAdornment}
+                    {endIcon && (
+                      <InputAdornment
                         className={
-                          isHovered && popUpHover
-                            ? classes.mandatoryIcon2
-                            : classes.mandatoryIcon1
+                          mandatory &&
+                          (popUpHover === undefined || popUpHover === false)
+                            ? classes.inputAdornment2
+                            : mandatory && isHovered && popUpHover
+                            ? classes.inputAdornment2
+                            : (mandatory === false ||
+                                mandatory === undefined) &&
+                              (popUpHover === undefined || popUpHover === false)
+                            ? classes.inputAdornment2
+                            : (mandatory === false ||
+                                mandatory === undefined) &&
+                              isHovered &&
+                              popUpHover
+                            ? classes.inputAdornment2
+                            : classes.inputAdornment
                         }
-                      />
-                    </InputAdornment> ): <InputAdornment
-                      position="end"
-                      style={{visibility:'hidden'}}
-                    >
-                      <img
-                        src={errorImg}
-                        alt="Error icon"
-                        className={
-                          isHovered && popUpHover
-                            ? classes.mandatoryIcon2
-                            : classes.mandatoryIcon1
-                        }
-                      />
-                    </InputAdornment> 
-                  }
-                </>
-              ),
-            }}
-          />
-        );
-      }}
-    />
+                      >
+                        {endIcon}
+                      </InputAdornment>
+                    )}
+
+                    {mandatory ? (
+                      <InputAdornment position="end">
+                        <img
+                          src={errorImg}
+                          alt="Error icon"
+                          className={
+                            isHovered && popUpHover
+                              ? classes.mandatoryIcon2
+                              : classes.mandatoryIcon1
+                          }
+                        />
+                      </InputAdornment>
+                    ) : (
+                      <InputAdornment
+                        position="end"
+                        style={{ visibility: "hidden" }}
+                      >
+                        <img
+                          src={errorImg}
+                          alt="Error icon"
+                          className={
+                            isHovered && popUpHover
+                              ? classes.mandatoryIcon2
+                              : classes.mandatoryIcon1
+                          }
+                        />
+                      </InputAdornment>
+                    )}
+                  </>
+                ),
+              }}
+            />
+          );
+        }}
+      />
+    </>
   );
 };
+
 
 export default AutoComplete;

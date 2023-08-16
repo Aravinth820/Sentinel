@@ -1,5 +1,6 @@
 const eventBus = {
     subscribeToEvent(eventName, callback) {
+      console.log('event Name',eventName)
       document.addEventListener(eventName, (e) => callback(e.detail));
     },
     publishMessage(data) {

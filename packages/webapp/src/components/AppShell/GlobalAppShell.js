@@ -1,5 +1,6 @@
 
 import React from 'react'
+import './GlobalAppShell.css'
 
 import SentinelAppShell from '../../../../uicomponents/components/SentinelAppShell/SentinelAppShell';
 

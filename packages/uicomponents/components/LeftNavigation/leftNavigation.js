@@ -16,15 +16,15 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import DescriptionIcon from '@mui/icons-material/Description';
 import { makeStyles } from "@mui/styles";
 
-import checkbox from '../assests/images/checkbox.svg'
-import checkboxChecked from '../assests/images/checkboxChecked.svg'
-import sentinelFullLogo from '../assests/images/sentinelFullLogo.svg'
-import sentinelLogo from '../assests/images/sentinelLogo.svg'
-import user from '../assests/images/user.svg'
-import addSection from '../assests/images/addSection.svg'
+import checkbox from '../../assests/images/checkbox.svg'
+import checkboxChecked from '../../assests/images/checkboxChecked.svg'
+import sentinelFullLogo from '../../assests/images/sentinelFullLogo.svg'
+import sentinelLogo from '../../assests/images/sentinelLogo.svg'
+import user from '../../assests/images/user.svg'
+import addSection from '../../assests/images/addSection.svg'
 
 
-import FilterAndSort from "../FilterAndSort.js/FilterandSort";
+import FilterAndSort from "../FilterAndSort/FilterandSort";
 import SearchTextBox from "../../inputs/SearchTextBox";
 import AddIcon from "@mui/icons-material/Add";
 
@@ -95,12 +95,18 @@ const useStyles = makeStyles((theme) => ({
  "&::-webkit-scrollbar": {
  width: "6px",
  height: "5px",
+ backgroundColor: "transparent !important",
  },
  "&::-webkit-scrollbar-thumb": {
- backgroundColor: "#CDCFD3",
+ backgroundColor: "#CDCFD3 !important",
  height: "76.58px !important",
  borderRadius: "22px",
  },
+ "&::-webkit-scrollbar-track": {
+    backgroundColor: "transparent !important",
+  
+   
+    },
  "& .MuiTypography-root": {
  fontSize: "12px",
  fontWeight: "600",
@@ -426,7 +432,7 @@ const handleAddItem =(event,index) => {
  style={{paddingBottom: "0.5rem",marginLeft:"8px", display: "flex", flexDirection: "column", }}
  className={open ? classes.drawerOpen : classes.drawerClose}
  >
- <ListItem key="sentinel-logo">
+ {/* <ListItem key="sentinel-logo">
  <ListItemIcon>
  {open? <img src={sentinelFullLogo} alt="Sentinel"/>: <img src={sentinelLogo} alt="Sentinel"/>} 
  </ListItemIcon>
@@ -442,7 +448,7 @@ const handleAddItem =(event,index) => {
  className={classes.arrow}
  />
  )}
- </ListItem>
+ </ListItem> */}
  </List>
  {!openInvoice? <List
  style={{paddingBottom: "0px",paddingTop:"0px",overflowY: "auto",display: "flex",flexDirection: "column",width:open?"228px":"51px",flex: 1,marginLeft:"8px"}}
