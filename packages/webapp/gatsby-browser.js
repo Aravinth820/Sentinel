@@ -30,6 +30,10 @@ let awsAuthConfig = {
     aws_user_pools_web_client_id: process.env.REACT_APP_USER_POOLS_WEB_CLIENT_ID,
   }
 
+  const masterApiConfig = {
+    aws_http_Endpoint: process.env.MASTER_API,
+  }
+
 AmplifyConfig.addConfig(
     ConfigKeys.WEBSOCKET_CONNECTION_API,WebSocketConnection
 )
@@ -37,6 +41,8 @@ AmplifyConfig.addConfig(
 AmplifyConfig.addConfig(ConfigKeys.AUTH, awsAuthConfig)
 
 AmplifyConfig.addConfig(ConfigKeys.JOB_API, jobApiConfig)
+
+AmplifyConfig.addConfig(ConfigKeys.MASTER_API, masterApiConfig)
 
 export const onClientEntry = () => {
     Hub.listen('auth', authConfiguredEventListener)

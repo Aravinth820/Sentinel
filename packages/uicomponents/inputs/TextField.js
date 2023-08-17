@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
     },
     '& .MuiInput-input':{
       color: "#050E25 !important",
+      // color: (styles) => styles?.color ? styles?.color + " !important": '',
       //color: '#ffffff',
       fontFamily: "Inter !important",
       fontSize:"12px !important",

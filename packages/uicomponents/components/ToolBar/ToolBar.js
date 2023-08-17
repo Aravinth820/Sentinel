@@ -11,6 +11,7 @@ import FilterList from '../../assests/images/filter_list.svg'
 import ArrowDown from '../../assests/images/arrow_dropdown.svg'
 import ArrowUp from '../../assests/images/arrowup_dropdown.svg'
 import ClearIcon from '@mui/icons-material/Clear';
+
 const useStyles = makeStyles((theme) => ({
     appBar: {
         '&.MuiAppBar-root': {
@@ -600,20 +601,13 @@ const myArray = [
     { id: 2, label: 'TaTa Motors', checked: false, fieldName: 'TaTa Motors' },
     { id: 3, label: 'V-GUARD INDUSTRIES LIMITED', checked: false, fieldName: 'V-GUARD INDUSTRIES LIMITED' },
     { id: 4, label: 'BERRY N BLOSSOM THE PVT LTD', checked: false, fieldName: 'BERRY N BLOSSOM THE PVT LTD' },
-    { id: 5, label: 'Schneider Electric India', checked: false, fieldName: 'Schneider Electric India' },
-    { id: 6, label: 'Schneider Electric India', checked: false, fieldName: 'Schneider Electric India' },
-    { id: 7, label: 'TaTa Motors', checked: false, fieldName: 'TaTa Motors' },
-    { id: 8, label: 'Schneider Electric India', checked: false, fieldName: 'Schneider Electric India' },
+    { id: 5, label: 'Auther', checked: false, fieldName: 'Auther' },
+    { id: 6, label: 'Nippon', checked: false, fieldName: 'Nippon' },
+    { id: 7, label: 'TVS Motors', checked: false, fieldName: 'TVS Motors' },
+    { id: 8, label: 'Hyundai India', checked: false, fieldName: 'Hyundai India' },
     { id: 9, label: 'BERRY N BLOSSOM THE PASTRY LAND PVT LTD', checked: false, fieldName: 'BERRY N BLOSSOM THE PASTRY LAND PVT LTD' },
-    { id: 10, label: 'BERRY N BLOSSOM THE PASTRY LAND PVT LTD', checked: false, fieldName: 'BERRY N BLOSSOM THE PASTRY LAND PVT LTD' },
-    { id: 11, label: 'V-GUARD INDUSTRIES LIMITED', checked: false, fieldName: 'V-GUARD INDUSTRIES LIMITED' },
-    { id: 12, label: 'V-GUARD INDUSTRIES LIMITED', checked: false, fieldName: 'V-GUARD INDUSTRIES LIMITED' },
-    { id: 13, label: 'V-GUARD INDUSTRIES LIMITED', checked: false, fieldName: 'V-GUARD INDUSTRIES LIMITED' },
-    { id: 14, label: 'TaTa Motors', checked: false, fieldName: 'TaTa Motors' },
-    { id: 15, label: 'TaTa Motors', checked: false, fieldName: 'TaTa Motors' },
-    { id: 16, label: 'Schneider Electric India', checked: false, fieldName: 'Schneider Electric India' },
-    { id: 17, label: 'Schneider Electric India', checked: false, fieldName: 'Schneider Electric India' },
-    // Add more checkboxes as needed
+    { id: 10, label: 'Toyota', checked: false, fieldName: 'Toyota' },
+   
 ];
 
 
@@ -770,6 +764,7 @@ export const FilterDropDown = () => {
             return { ...field, checked }
         })
         setListData(filterFields)
+        console.log(checkedIds, payload)
     }
 
     const handleChipDelete = (id) => {
@@ -781,14 +776,17 @@ export const FilterDropDown = () => {
 
         setAppliedFilters((prevChips) => prevChips.filter((c) => c.id !== id))
         console.log(id)
+        
     }
 
     const handleClearAll = () => {
         setListData(myArray)
         setAppliedFilters([])
-    }
+    }   
+   
+    const handleSearchInput = () => {}
     let filterCount = `(${appliedFilters.length})`
-    console.log(listData, 'filtered')
+    console.log(appliedFilters)
     return (<div>
         <Button text={`Filter${appliedFilters.length > 0 ? filterCount : ''}`} classProperties='tertiaryButtonNormal' endIcon={true} startIcon={true} onClick={handleClick} leftIcon={FilterList} rightIcon={open ? ArrowUp : ArrowDown} />
         <Popover
@@ -853,29 +851,6 @@ export const FilterDropDown = () => {
                             handleChipDelete={handleChipDelete}
                         />
                     )}
-                    {/* {appliedFilters.map(each => { 
- let chipsArray = each.selected.map((item) => {
- console.log(item);
- return (
- <Chips
- label={'Hii' + " : " + item}
- icon={<ClearIcon className={classes.arrowStyle} />}
- styles={{
- color: '#050E25',
- fontSize: '12px',
- fontStyle: 'normal',
- fontWeight: 400,
- fontFamily: 'Inter',
- background:'#EFF0F1'
- }}
- handleChipDelete={handleChipDelete}
- />
- );
- });
- 
- return chipsArray;
- 
- })} */}
                     <Button text='Clear All' classProperties='tertiaryButtonNormal' onClick={handleClearAll} />
                 </Box>
             </Box>
