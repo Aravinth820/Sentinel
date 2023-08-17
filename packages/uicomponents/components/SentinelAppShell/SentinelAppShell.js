@@ -6,6 +6,7 @@ import TopLeft from './TopLeft'
 import TopButtonGroup from "./TopButtonGroup";
 import TopRight from "./TopRight";
 import ImportCheckList from "../../../webapp/src/components/RoutePages/ImportJobDetails/index";
+import { navigate } from '@reach/router'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -83,7 +84,12 @@ const SentinelAppShell = (props) => {
 
   }
  
+  const navigateJobsPage=(()=>{
+   
+    navigate("/app/myJobs/")
 
+
+})
   
   
 
@@ -92,7 +98,7 @@ const SentinelAppShell = (props) => {
     <Grid style={{ display:"flex",alignItems:'flex-start',justifyContent:"center",position:'sticky',top:'0',position:'fixed',width:'100%',zIndex:'1000'}} >
       <Grid container className={classes.topNavigation}>
         <Grid item xs={4} className={classes.topNavLeft}>
-          <TopLeft sentinelIcon={sentinelIcon} selectOptions={selectOptions} jobNo={jobNo} />
+          <TopLeft sentinelIcon={sentinelIcon} selectOptions={selectOptions} jobNo={jobNo} navigateJobsPage={navigateJobsPage}/>
         </Grid>
         <Grid item xs={4} className={classes.topNavCenter}>
                   <TopButtonGroup tabsData={tabsData} setSelectedTabName={setSelectedTabName}/>

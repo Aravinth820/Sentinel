@@ -9,11 +9,14 @@ import {
   Typography,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import LocalShippingIcon from "@mui/icons-material/LocalShipping";
-import DirectionsBoatIcon from "@mui/icons-material/DirectionsBoat";
-import LocalAirportIcon from "@mui/icons-material/LocalAirport";
 import { MenuBar1 } from "./jobtooltipmenu";
 import Checkbox from "@mui/material/Checkbox";
+import Land from '../../assests/images/Land.svg'
+import Air from '../../assests/images/Air.svg'
+import Sea from '../../assests/images/Sea.svg'
+
+
+
 
 const useStyles = makeStyles(() => ({
   tableRowContainer: {
@@ -43,41 +46,33 @@ const useStyles = makeStyles(() => ({
     minHeight: "0px !important",
     marginBottom: "8px !important",
 
-    
-
     "& .MuiAccordionSummary-content.Mui-expanded": {
       margin: "0px !important",
-      marginTop:"10px !important"
-
+      marginTop: "10px !important",
     },
-   
   },
   accordionDetail: {
     //marginTop: "-2.5rem",
     padding: "0px 16px 16px !important",
     display: "flex !important",
     flexDirection: "column",
-   
   },
   accordionDetailsContainer: {
     marginBottom: "8px !important",
     //marginTop: "1rem",
-  
   },
   accordionDetailsContainer2: {
     //marginTop: "1rem",
-    
   },
-
 
   TableRow: {
     width: "100%",
     display: "flex !important",
-    minHeight:'24px !important'
+    minHeight: "24px !important",
   },
   TableRow2: {
     display: "flex !important",
-    minHeight:'24px !important'      
+    minHeight: "24px !important",
   },
 
   tableBodyCell: {
@@ -89,8 +84,7 @@ const useStyles = makeStyles(() => ({
     borderBottom: "none !important",
     position: "relative",
     fontWeight: "400",
-    padding:'4px 8px 4px 8px !important',
-
+    padding: "4px 8px 4px 8px !important",
   },
   sNoContainer: {
     display: "flex",
@@ -264,11 +258,13 @@ export default function Joblisttablebody(props) {
                         {data?.modeOfTransport ? (
                           data.modeOfTransport === "Land" ||
                           data.modeOfTransport === "L-Land" ? (
-                            <LocalShippingIcon className={classes.landIcon} />
+
+                           <img src={Land} alt="404" />
                           ) : data.modeOfTransport === "Air" ? (
-                            <LocalAirportIcon className={classes.airIcon} />
+
+                            <img src={Air} alt="404" />
                           ) : (
-                            <DirectionsBoatIcon className={classes.shipIcon} />
+                            <img src={Sea} alt="404" />
                           )
                         ) : null}
                       </div>
@@ -289,8 +285,7 @@ export default function Joblisttablebody(props) {
                     ) : (
                       ""
                     )}
-              
-                  </TableCell>
+              </TableCell>
                 );
               })}
             </TableRow>
