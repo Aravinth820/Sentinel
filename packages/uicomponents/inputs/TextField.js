@@ -129,6 +129,7 @@ const TextFields = (props) => {
   const [read, setRead] = React.useState(false)
   const [data, setData] = useState(value)
   const [disable, setDisable] = React.useState(disableLine)
+  const [initialValue , setInitialValue] = React.useState('')
   
  
 
@@ -166,10 +167,11 @@ const TextFields = (props) => {
   const handleOnBlur = (event) => {
 
     setData(event.target.value)
-   const wssData = { jobId: jobId, userId: userId, initialValue: data, changedValue: event.target.value, field: fieldKey, ws }
+   const wssData = { jobId: jobId, userId: userId, initialValue: initialValue, changedValue: data, field: fieldKey, ws }
    webSocketSendData(wssData)
     setDisable(true)
     setEntering(false)
+    setInitialValue(event.target.value)
   }
 
   return (
