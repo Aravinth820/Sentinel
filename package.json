@@ -6,7 +6,7 @@
     "private":true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "develop:webapp": "yarn workspace @project/webapp develop -p 8000",
+    "develop:webapp": "yarn workspace @project/webapp develop -p 8888",
     "clean:webapp": "yarn workspace @project/webapp clean",
     "build:webapp": "NODE_OPTIONS=--max-old-space-size=8192 yarn workspace @project/webapp build"
   },
