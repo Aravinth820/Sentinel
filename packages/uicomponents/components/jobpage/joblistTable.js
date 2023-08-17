@@ -265,6 +265,7 @@ export default function ListTable(props) {
   const [scrolledListData, setScrolledListData] = React.useState(
     props.listData
   );
+  const [listItemsData, setListItemData] = React.useState([])
   const [headerCheckbox, setHeaderCheckbox] = React.useState(false);
   const [fullAccordianOpen, setFullAccordianOpen] = React.useState(
     props.hover || props.hover === undefined ? false : props.accordion
@@ -369,13 +370,14 @@ export default function ListTable(props) {
                             </span>
                             {headCell.filter && (
                               <FilterAndSort
-                                name="Table"
-                                data={headCell}
-                                listData={myArray}
-                                icon={<FilterListIcon />}
-                                filterType={headCell.filterType}
-                                handleData={handleData}
-                                boxPosition={headCell.boxPosition}
+                              name='Table' 
+                              data={headCell}
+                              listData={listItemsData}
+                              icon={<FilterListIcon/>}
+                              filterType={headCell.filterType}
+                              handleData = {handleData}
+                              boxPosition={headCell.boxPosition}
+                              label={headCell.label}
                               />
                             )}
                           </div>

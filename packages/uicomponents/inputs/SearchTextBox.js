@@ -142,7 +142,7 @@ export default function SearchTextBox(props) {
        setSearchValue(event.target.value)
        setIsTyping(true)
    }
-   handleSearchInputChange(event.target.value)   // pass the function as arg and place here to access the search value
+   handleSearchInputChange({value:event.target.value, name: text})   // pass the function as arg and place here to access the search value
 
  }
 
@@ -183,7 +183,7 @@ export default function SearchTextBox(props) {
          <InputBase
              value={searchValue}
              sx={{color:color}}
-             placeholder={text}
+             placeholder={props.placeholder ? props.placeholder: text}
              className={classes.searchInput1}
              inputProps={{ 'aria-label': 'search' }}
              onChange={handleSearchTerm}

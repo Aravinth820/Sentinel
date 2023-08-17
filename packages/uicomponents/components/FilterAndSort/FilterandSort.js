@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import Checkbox from '../../inputs/CheckBox';
 import Popover from '../../inputs/ArrowDialogbox'
 import SearchTextBox from '../../inputs/SearchTextBox';
-import { List, ListItem, ListItemText, Typography } from '@mui/material';
+import { List, ListItem, ListItemText, Typography, setRef } from '@mui/material';
 import { Box } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -15,6 +15,9 @@ import TextFields from '../../inputs/TextField';
 import {Grid} from '@mui/material';
 import Button from '../../inputs/Button/Button'
 import FilterListIcon from "@mui/icons-material/FilterList";
+import { masterServices } from '../../../apiIntegration/masterServices';
+
+
 const useStyles = makeStyles({
   container: {
   display: 'flex',
@@ -257,14 +260,32 @@ const useStyles = makeStyles({
   width: "16px !important",
   marginLeft: "6px !important",
  },
-  
+ loadingCard:{
+  display: 'flex',
+   flexDirection:'column',
+   justifyContent: 'center', 
+   alignItems:'center',
+   width: '302px',
+   height: '247px'
+ },
+ loadingText:{
+  fontFamily: 'Inter',
+  fontSize: 12,
+  fontStyle: 'normal',
+  fontWeight: 600,
+  lineHeight: '16px',
+  color:'#FFFFFF !important'
+ }
  })
  
  
  
- const loadingView = () =>( <Box sx={{ display: 'flex', justifyContent: 'center', alignItems:'center',width: '302px', height: '247px' }}>
+ const LoadingView = () =>{
+  const classes = useStyles()
+  return ( <Box className={classes.failureCard}>
  <CircularProgress sx={{width: '20px', height: '20px'}}/>
- </Box>)
+ <Typography className={classes.loadingText}>Loading...</Typography>
+ </Box>)}
  
  
  const FailureView = () => {
@@ -276,30 +297,62 @@ const useStyles = makeStyles({
  </Box>)}
  
  export default function FilterAndSort(props) {
-  const {listData, filterName, icon, data, transform, boxPosition, ArrowPlaced, top, fieldName} = props
+  const { listData,filterName, icon, data, transform, boxPosition, ArrowPlaced, top, fieldName} = props
   const [dateSelected, setDateSelected] = useState('')
   const [date, setDate] = useState('')
   const [isChecked, setCheckedStatus] = useState(false)
   const [searchValue, setSearchInput] = useState("")
   const [listOfResults, setSearchListItems] = useState(listData)
   const [open, setOpen] = useState(false)
-  const [checkedList, setCheckedList] = useState([])
+  const [checkedList, setCheckedList] = useState(listData)
   const [openDialog ,setOpenDialog] = React.useState(false)
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+
   const classes = useStyles()
-  const handleSearchInputChange = (searchInput) => {
-  
-  setSearchInput(searchInput)
-  let filteredResults = listData.filter(item => item.fieldName.toLowerCase().includes(searchValue.toLocaleLowerCase()))
-  let checkedListIds = checkedList.filter(each => each.checked === true).map(each => each.id)
-  let finalList = filteredResults.map(each => {
-  if (checkedListIds.includes(each.id)){
-  return {...each, checked: true }
+  const handleSearchInputChange = async  (searchInput) => {
+    setSearchInput(searchInput.value)
+
+  if (props.label === 'Importer'){
+    setIsLoading(true);
+   
+      try{
+        if (props.label === 'Importer'){
+         let  options = await masterServices.getPartyMaster(searchInput)
+         let checkedListIds = checkedList.filter(each => each.checked === true).map(each => each.id)
+        let finalList =  options.map(each => {
+          if (checkedListIds.includes(each.id)){
+            return {...each, checked: true }
+          }
+          return each
+        })
+        props.handleData(finalList)
+        setSearchListItems(finalList)
+ 
+       
+      }
+      }
+      catch(error){
+        setIsLoading(false);
+        setIsError(true);
+      }
+      setIsLoading(false)
+
+   }
+  else{
+    let filteredResults = listData.filter(item => item.fieldName.toLowerCase().includes(searchValue.toLocaleLowerCase()))
+    let checkedListIds = checkedList.filter(each => each.checked === true).map(each => each.id)
+    let finalList = filteredResults.map(each => {
+      if (checkedListIds.includes(each.id)){
+        return {...each, checked: true }
+      }
+      return each
+    })
+    setSearchListItems(finalList) 
+    console.log(finalList)
   }
-  return each
-  })
-  
-  setSearchListItems(finalList)
-  
+
   }
   
   
@@ -323,38 +376,57 @@ const useStyles = makeStyles({
   checkedIds.push(checkedList[key].id);
   }
   }
+  console.log(checkedList)
+  if (props.label === 'Importer'){
+     let checkedListIds = checkedList.filter(each => each.checked === true).map(each => each.id)
+      let finalList =  listOfResults.map(each => {
+        if (checkedListIds.includes(each.id)){
+          return {...each, checked: true }
+        }
+        return each
+      })
+     return props.handleData(finalList)
+  }
+
   let resultArray;
-  if (fieldName === 'Toolbar'){
-  resultArray = checkedIds.map(index => ({id: listOfResults[index -1].id,value:data.label + " : " + listOfResults[index - 1].label}))
-  let payload;
-  
-  if (props.filterType === 'Date&Time'){
-  payload = {key:data.label, selected:[data.label + " : " + dateSelected]}
-  return props.handleData(checkedIds, payload)
-  }
-  else{
-  payload = {key:data.label, selected:resultArray}
-  return props.handleData(checkedIds, payload);
-  }
+  if (props.fieldName === 'Toolbar'){
+    console.log(listOfResults, 'Hii', checkedIds)
+    resultArray = checkedIds.map(index => ({id: listOfResults[index - 1]?.id,value:data.label + " : " + listOfResults[index - 1]?.label}))
+    let payload;
+    
+    if (props.filterType === 'Date&Time'){
+      payload = {key:data.label, selected:[{value:data.label + " : " + dateSelected}]}
+      return props.handleData(checkedIds, payload)
+    }
+    else{
+      payload = {key:data.label, selected:resultArray}
+      return props.handleData(checkedIds, payload);
+    }
   }
  
   props.handleData(checkedIds)
-  
+
   }
   
   const handleAnyCheckboxClick = (status, newList) => {
+    
+    //setSearchListItems(newList)
   setCheckedList(newList)
-  setCheckedStatus(status)
+    setCheckedStatus(status)
+    console.log(newList)
+    console.log(listOfResults)
+
   }
   const handleDateTimeSelected = (dateSelected) => {
-  setDateSelected(dateSelected)
-  
+    setDateSelected(dateSelected)
+
   }
  
   const handleCancel = () => {
   setOpenDialog(false)
   
   }
+
   return(
   <Grid container className={props.name==='Table' ? `${classes.container2}`:`${classes.container}`} > 
   {props.name !== 'Table' ? 
@@ -378,13 +450,16 @@ const useStyles = makeStyles({
   >
   <h1 className={classes.heading}>Filter by</h1>
   {props.data?.subFilterValues !== undefined ? 
-  <> <List classes={{root:classes.searchListContainer}}>{data.subFilterValues.map(each => <SearchTextBox text={each.label} key = {each.label} width={each.width} searchValue = {searchValue}backgroundColor='#242C40' border="none" handleSearchInputChange ={handleSearchInputChange} />)} 
+  <> <List classes={{root:classes.searchListContainer}}>{data.subFilterValues.map(each => <SearchTextBox text={each.label} placeholder={each.placeholder} key = {each.label} width={each.width} searchValue = {searchValue}backgroundColor='#242C40' border="none" handleSearchInputChange ={handleSearchInputChange} />)} 
   </List > 
   <p className={classes.results}>{listOfResults?.length} Results</p>
-  {listOfResults.length === 0 ? <FailureView/> : <SuccessView listItems={listOfResults} handleAnyCheckboxClick={handleAnyCheckboxClick}/>}
+  {/* {listOfResults.length === 0 ? <FailureView/> : <SuccessView listItems={listOfResults} handleAnyCheckboxClick={handleAnyCheckboxClick}/>} */}
+    {isLoading && <LoadingView/>}
+    {isError && <FailureView/>}
+    {!isLoading && !isError && listOfResults && <SuccessView listItems={listOfResults} handleAnyCheckboxClick={handleAnyCheckboxClick}/>}
   </> 
   : 
-  <DateField dateSelected={dateSelected} handleDateTimeSelected = {handleDateTimeSelected}/>
+  <DateField dateSelected={dateSelected} handleDateTimeSelected = {handleDateTimeSelected} filterType={props.filterType}/>
   }
   <FooterButtons isChecked = {isChecked} handleCancel={handleCancel} handleApplyClick={handleApplyClick} dateSelected={dateSelected}/>
   </Popover>
@@ -402,15 +477,14 @@ const useStyles = makeStyles({
  export const SuccessView = ({listItems, handleAnyCheckboxClick}) => { 
   const classes = useStyles()
   const [selectAll, setSelectAll] = useState(false)
-  const [checkedItems, setCheckedItems] = useState(listItems);
+  const [checkedItems, setCheckedItems] = useState([]);
   const [selectedItems, setSelectedItems] = useState(0);
-  
   useEffect(() => {
-  setCheckedItems(listItems)
-  let count = listItems.filter(item => item.checked).length;
-  let isAllChecked = listItems.every(item => item.checked === true)
-  setSelectAll(isAllChecked)
-  setSelectedItems(count)
+    setCheckedItems(listItems)
+    let count = listItems.filter(item => item.checked).length;
+    let isAllChecked = listItems.every(item => item.checked === true)
+    setSelectAll(isAllChecked)
+    setSelectedItems(count)
   }
   
   , [listItems])
@@ -482,7 +556,7 @@ const useStyles = makeStyles({
  
   export const DateField = (props) =>{
   const classes = useStyles()
-  const {handleDateTimeSelected, dateSelected} = props
+  const {handleDateTimeSelected, dateSelected, filterType} = props
   return (
   <Grid className={classes.dateFieldContainer}>
   <p className={classes.selectDate}>Select Date</p>
@@ -490,8 +564,9 @@ const useStyles = makeStyles({
   value = {dateSelected}
   iconType={ <DatePicker handleSelectedDate = {handleDateTimeSelected} numberOfMonths = {2}/>}
   showEndAdornment = {true}
+  filterType ={filterType}
   variant = 'standard'
-  style={{width:'285px'}}
+  style={{width:'285px', color:'#ffffff'}}
   />
   
   </Grid>
@@ -503,9 +578,13 @@ const useStyles = makeStyles({
   const classes = useStyles()
   return(<Box className={classes.buttonContainer}>
   <Button classProperties='tertiaryButtonCondensed' text='Cancel' onClick={handleCancel} style={{marginLeft: '-14px'}}>Cancel</Button>
-  {(isChecked || dateSelected) ? <Button classProperties="primaryButtonCondensed" text='Apply' onClick={handleApplyClick}>Apply
-  </Button> : <Button classProperties='primaryButtonCondensed' text = "Apply" disabled={true}>Apply
-  </Button>}
+  <Button classProperties="primaryButtonCondensed" text='Apply' onClick={handleApplyClick}>Apply
+  </Button>
+  {/* {(isChecked || dateSelected) ? <Button classProperties="primaryButtonCondensed" text='Apply' onClick={handleApplyClick}>Apply
+  </Button> :
+   <Button classProperties='primaryButtonCondensed' text = "Apply" disabled={true}>Apply
+  </Button>
+  } */}
   </Box>)
  }
  
