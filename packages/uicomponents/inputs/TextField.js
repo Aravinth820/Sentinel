@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
     },
     '& .MuiInput-input':{
       color: "#050E25 !important",
+      // color: (styles) => styles?.color ? styles?.color + " !important": '',
       //color: '#ffffff',
       fontFamily: "Inter !important",
       fontSize:"12px !important",
@@ -63,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize:"12px !important",
       height:"16px !important",
       fontWeight:"600 !important",
-      padding:"8px !important"
+      padding:"8px !important",
     }
   },
   underline: {
@@ -113,7 +114,9 @@ const TextFields = (props) => {
   
  
 
-
+  // React.useEffect(() => {
+  //   setData(value)
+  // } )
   // React.useEffect(() => {
   //   eventBus.subscribeToEvent(fieldKey, (data) => {
   //     setData(data.eventData.changedValue)
@@ -149,7 +152,7 @@ const TextFields = (props) => {
    // webSocketSendData(wssData)
     setDisable(true)
   }
-  console.log(value)
+  
   return (
     <TextField
       autoComplete='off'

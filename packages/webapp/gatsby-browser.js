@@ -13,11 +13,16 @@ let WebSocketConnection = {
     domain: "ws://0.0.0.0:8080"
 }
 
+
+const masterApiConfig = {
+    aws_http_Endpoint: process.env.MASTER_API,
+  }
+  
+
 AmplifyConfig.addConfig(
     ConfigKeys.WEBSOCKET_CONNECTION_API,WebSocketConnection
 )
-
-
+AmplifyConfig.addConfig(ConfigKeys.MASTER_API, masterApiConfig)
 
 
 export const wrapPageElement=CgateAppShell

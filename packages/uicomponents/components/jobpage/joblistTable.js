@@ -185,6 +185,7 @@ export default function ListTable(props) {
   const [scrolledListData, setScrolledListData] = React.useState(
     props.listData
   );
+  const [listItemsData, setListItemData] = React.useState([])
   const [headerCheckbox, setHeaderCheckbox] = React.useState(false);
   const [fullAccordianOpen, setFullAccordianOpen] = React.useState(
     props.hover || props.hover === undefined ? false : props.accordion
@@ -200,7 +201,15 @@ export default function ListTable(props) {
     setHeaderCheckbox(!headerCheckbox);
   };
 
-  const handleData = () => {}
+  const handleData = (finalList) => {
+    // const filterFields = options.map(field => {
+    //   const checked = checkedIds.includes(field.id)
+    //   return { ...field, checked }
+    // })
+    setListItemData(finalList)
+
+
+  }
 
   return (
     <div className={classes.tableContainer}>
@@ -256,11 +265,12 @@ export default function ListTable(props) {
                               <FilterAndSort
                               name='Table' 
                               data={headCell}
-                              listData={myArray}
+                              listData={listItemsData}
                               icon={<FilterListIcon/>}
                               filterType={headCell.filterType}
                               handleData = {handleData}
                               boxPosition={headCell.boxPosition}
+                              label={headCell.label}
                               />
                             )}
                           </div>
@@ -291,11 +301,12 @@ export default function ListTable(props) {
                                      <FilterAndSort 
                                      name='Table'
                                      data={headCell}
-                                     listData={myArray}
+                                     listData={listItemsData}
                                      icon={<FilterListIcon/>}
                                      filterType={headCell.filterType}
                                      handleData={handleData}
                                      boxPosition={headCell.boxPosition}
+                                       label={headCell.label}
                                      />
                                         }
                                   </div>
