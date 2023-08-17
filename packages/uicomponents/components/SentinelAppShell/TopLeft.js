@@ -6,6 +6,7 @@ import { Divider } from "@mui/material";
 //import sentinelLogo from '../Images/sentinelLogo.svg'
 import { makeStyles } from "@mui/styles";
 import sentinelFullLogo from '../../assests/images/sentinelFullLogo.svg'
+
 const option = [
   { label: "Jobs", value: "jobs" },
 ];
@@ -61,6 +62,7 @@ const TopLeft = (props) => {
   const handleChange = (event) => {
     setValue(event.target.value);
   };
+ 
 
   return (
     <Grid style={{ display: "flex", alignItems: "center" }}>
@@ -86,7 +88,7 @@ const TopLeft = (props) => {
       </Select>}
       {(jobNo && selectOptions)  && <Divider orientation="vertical" className={classes.divider} />}
       {jobNo && <Grid className={classes.backArrow}>
-        <ArrowBackIosNewIcon />
+        <ArrowBackIosNewIcon onClick={props.navigateJobsPage}/>
         <Typography className={classes.jobNo}>{jobNo}</Typography>
       </Grid>}
     </Grid>

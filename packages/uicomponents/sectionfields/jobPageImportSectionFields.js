@@ -8,7 +8,7 @@ const importColumns = [
           isSortable: true,
           default: true,
           label: "S.No",
-        }, //flexGrow:1
+        }, 
         {
           id: "jobNo",
           numeric: false,
@@ -21,7 +21,7 @@ const importColumns = [
           flexGrow: 1,
         },
         {
-          id: "jobCreationDate",
+          id: "createDateTime",
           numeric: false,
           minWidth: 90,
           isSortable: true,
@@ -44,7 +44,7 @@ const importColumns = [
           flexGrow: 1,
         },
         {
-          id: "Importer",
+          id: "importerName",
           numeric: false,
           minWidth: 90,
           isSortable: false,
@@ -131,7 +131,7 @@ const importColumns = [
           ],
         },
         {
-          id: "cbBranch",
+          id: "cbBranchCode",
           numeric: false,
           minWidth: 90,
           isSortable: false,
@@ -165,7 +165,7 @@ const importColumns = [
           ],
         },
         {
-          id: "status",
+          id: "jobStatus",
           numeric: false,
           minWidth: 90,
           isSortable: true,
@@ -190,7 +190,7 @@ const importColumns = [
           ],
         },
         {
-          id: "createdBy",
+          id: "assignedTo",
           numeric: false,
           minWidth: 90,
           isSortable: true,
@@ -246,10 +246,10 @@ const importColumns = [
           minWidth: 90,
           label: "To Address",
           flexGrow: 1,
-          left: "7px",
+          left: "4px",
         }, //left:'0.6%'
         {
-          id: "email",
+          id: "emailSubjectLine",
           numeric: false,
           minWidth: 270,
           isSortable: false,
@@ -257,10 +257,10 @@ const importColumns = [
           display: true,
           label: "EmailSubjectLine",
           flexGrow: 3,
-          left: "-5.2px",
+          left: "-3px",
         }, //left:'-0.4%'
         {
-          id: "update",
+          id: "processedBy",
           numeric: false,
           minWidth: 90,
           isSortable: true,
@@ -271,18 +271,18 @@ const importColumns = [
           boxPosition:'translateX(-85%)',
           ArrowPosition:'395px',
           flexGrow: 1,
-          left: "23px",
+          left: "11px",
           filter: true,
         },
         {
-          id: "time",
+          id: "updatedBy",
           display: true,
           isSortable: false,
-          default: true,
+          default: true,  
           minWidth: 90,
           label: "Updated By",
           flexGrow: 1,
-          left: "12px",
+          left: "5px",
           filter: true,
           filterType:'Date&Time',
           boxPosition:'translateX(-85%)',
@@ -301,7 +301,7 @@ const importColumns = [
           label: "",
         },
         {
-          id: "a",
+          id: "updateDateTime",
           display: true,
           isSortable: false,
           default: true,
@@ -310,7 +310,7 @@ const importColumns = [
           flexGrow: 1,
         },
         {
-          id: "customsHouseCode",
+          id: "portOfOrigin",
           display: true,
           isSortable: false,
           default: true,
@@ -334,13 +334,13 @@ const importColumns = [
           ],
         },
         {
-          id: "beSbNo",
+          id: "customsHouseCode",
           numeric: false,
           minWidth: 90,
           isSortable: false,
           default: true,
           display: true,
-          label: "Custom House Code",
+          label: "Customs House Code",
           flexGrow: 1,
           filter: true,
           subFilterValues:[
@@ -359,7 +359,7 @@ const importColumns = [
 
         },
         {
-          id: "beSbDate",
+          id: "beNo",
           numeric: false,
           minWidth: 90,
           isSortable: false,
@@ -384,7 +384,7 @@ const importColumns = [
           
         },
         {
-          id: "beSbType",
+          id: "beDate",
           numeric: false,
           minWidth: 90,
           isSortable: false,
@@ -406,7 +406,7 @@ const importColumns = [
           flexGrow: 1,
         },
         {
-          id: "dutyPayable",
+          id: "totalAssessableValue",
           numeric: false,
           minWidth: 90,
           isSortable: true,
@@ -416,7 +416,7 @@ const importColumns = [
           flexGrow: 1,
         },
         {
-          id: "",
+          id: "totalDuty",
           display: true,
           isSortable: false,
           default: true,

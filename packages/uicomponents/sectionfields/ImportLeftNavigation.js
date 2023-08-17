@@ -30,7 +30,7 @@ import packingDetails from "../assests/images/packingDetails.svg";
 import epcg from "../assests/images/epcg.svg";
 import supportingDocuments from "../assests/images/supportingDocuments.svg";
 import statements from "../assests/images/statements.svg";
-import TableVirtuoso from "../Inputs/EditTable/TableVirtuoso";
+
 const CommercialTaxDetails = [
   {
     row: [

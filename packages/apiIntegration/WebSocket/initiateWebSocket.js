@@ -8,7 +8,7 @@ let webSocketHeartBeat
 
 const initiateWebSockets = (ws, jobId, setIsWebSocketAlive, setServerId, USER_ID) => {
   let WebSocketURL = AmplifyConfig.getConfig(ConfigKeys.WEBSOCKET_CONNECTION_API)
-  ws.current = new WebSocket(WebSocketURL.domain);
+  ws.current = new WebSocket("ws://0.0.0.0:8080");
 
   ws.current.addEventListener("open", (event) => {
     setIsWebSocketAlive(true)

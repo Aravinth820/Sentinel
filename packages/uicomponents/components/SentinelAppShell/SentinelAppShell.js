@@ -6,6 +6,7 @@ import TopLeft from './TopLeft'
 import TopButtonGroup from "./TopButtonGroup";
 import TopRight from "./TopRight";
 import ImportCheckList from "../../../webapp/src/components/RoutePages/ImportJobDetails/index";
+import { navigate } from '@reach/router'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -46,20 +47,21 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
 }));
-const tabsData1 = [
-  { name: "Files", label: "Files", tab: 0 },
-  { name: "Checklist", label: "Checklist", tab: 1 },
-  { name: "Status", label: "Status", tab: 2 },
-];
 
-const tabsData2 = [
+
+const tabsData1 = [
     { name: "Imports", label: "Imports", tab: 0 },
     { name: "Exports", label: "Exports", tab: 1 },
   ];
+  const tabsData2 = [
+    { name: "Files", label: "Files", tab: 0 },
+    { name: "Checklist", label: "Checklist", tab: 1 },
+    { name: "Status", label: "Status", tab: 2 },
+  ];
 
 const SentinelAppShell = (props) => {
-  const[selectedTabName,setSelectedTabName]=React.useState('')
-  console.log('selectedTabName',selectedTabName)
+
+ const[selectedTabName,setSelectedTabName]=React.useState('')
   const urlParams = new URLSearchParams(window.location.search);
   let id = urlParams.get('id');
 
@@ -69,31 +71,37 @@ const SentinelAppShell = (props) => {
   if(value==="Import"){
     sentinelIcon=true
    selectOptions=true
-    tabsData=tabsData1
+   tabsData=tabsData2
     jobNo=id
 
   }
   else{
     sentinelIcon=true
     selectOptions=true
-     tabsData=tabsData2
+    tabsData=tabsData1
+
 
 
   }
  
+  const navigateJobsPage=(()=>{
+   
+    navigate("/app/myJobs/")
 
 
+})
+  
   
 
   return (
     <>
-    <Grid style={{ display:"flex",alignItems:'flex-start',justifyContent:"center",position:'sticky',top:'0',zIndex:'1000'}} >
+    <Grid style={{ display:"flex",alignItems:'flex-start',justifyContent:"center",position:'sticky',top:'0',position:'fixed',width:'100%',zIndex:'1000'}} >
       <Grid container className={classes.topNavigation}>
         <Grid item xs={4} className={classes.topNavLeft}>
-          <TopLeft sentinelIcon={sentinelIcon} selectOptions={selectOptions} jobNo={jobNo} />
+          <TopLeft sentinelIcon={sentinelIcon} selectOptions={selectOptions} jobNo={jobNo} navigateJobsPage={navigateJobsPage}/>
         </Grid>
         <Grid item xs={4} className={classes.topNavCenter}>
-          <TopButtonGroup tabsData={tabsData} setSelectedTabName={setSelectedTabName}/>
+                  <TopButtonGroup tabsData={tabsData} setSelectedTabName={setSelectedTabName}/>
         </Grid>
         <Grid item xs={4} className={classes.topNavRight}>
           <TopRight />

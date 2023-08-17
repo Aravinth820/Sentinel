@@ -9,11 +9,14 @@ import {
   Typography,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import LocalShippingIcon from "@mui/icons-material/LocalShipping";
-import DirectionsBoatIcon from "@mui/icons-material/DirectionsBoat";
-import LocalAirportIcon from "@mui/icons-material/LocalAirport";
 import { MenuBar1 } from "./jobtooltipmenu";
 import Checkbox from "@mui/material/Checkbox";
+import Land from '../../assests/images/Land.svg'
+import Air from '../../assests/images/Air.svg'
+import Sea from '../../assests/images/Sea.svg'
+
+
+
 
 const useStyles = makeStyles(() => ({
   tableRowContainer: {
@@ -38,17 +41,38 @@ const useStyles = makeStyles(() => ({
       backgroundColor: "#eeeeee",
     },
   },
+  accordionSumary: {
+    width: "100%",
+    minHeight: "0px !important",
+    marginBottom: "8px !important",
+
+    "& .MuiAccordionSummary-content.Mui-expanded": {
+      margin: "0px !important",
+      marginTop: "10px !important",
+    },
+  },
   accordionDetail: {
-    marginTop: "-2rem",
+    //marginTop: "-2.5rem",
+    padding: "0px 16px 16px !important",
     display: "flex !important",
     flexDirection: "column",
   },
+  accordionDetailsContainer: {
+    marginBottom: "8px !important",
+    //marginTop: "1rem",
+  },
+  accordionDetailsContainer2: {
+    //marginTop: "1rem",
+  },
+
   TableRow: {
     width: "100%",
     display: "flex !important",
+    minHeight: "24px !important",
   },
   TableRow2: {
     display: "flex !important",
+    minHeight: "24px !important",
   },
 
   tableBodyCell: {
@@ -60,6 +84,7 @@ const useStyles = makeStyles(() => ({
     borderBottom: "none !important",
     position: "relative",
     fontWeight: "400",
+    padding: "4px 8px 4px 8px !important",
   },
   sNoContainer: {
     display: "flex",
@@ -165,7 +190,15 @@ export default function Joblisttablebody(props) {
   );
   const [isHovered, setIsHovered] = useState(false);
   const [checkedCheckbox, setCheckedBox] = useState(false);
-  const { data, columns, index, checkbox, hover, headerCheckbox,onClickJobLink } = props;
+  const {
+    data,
+    columns,
+    index,
+    checkbox,
+    hover,
+    headerCheckbox,
+    onClickJobLink,
+  } = props;
 
   React.useEffect(() => {
     if (props.accordionFullOpen === true) {
@@ -202,12 +235,8 @@ export default function Joblisttablebody(props) {
       )}
       <div className={classes.tableRowStyle}>
         <Accordion expanded={accordionOpen} className={classes.accordion}>
-          <AccordionSummary>
-            <TableRow
-              className={classes.TableRow}
-              key={index}
-            
-            >
+          <AccordionSummary className={classes.accordionSumary}>
+            <TableRow className={classes.TableRow} key={index}>
               {columns[0].row.map((column) => {
                 return (
                   <TableCell
@@ -226,74 +255,73 @@ export default function Joblisttablebody(props) {
                         <Typography className={classes.number}>{`${
                           index + 1
                         }. \u00A0`}</Typography>
-                        {data?.mot ? (
-                          data.mot === "Land" || data.mot === "L-Land" ? (
-                            <LocalShippingIcon className={classes.landIcon} />
-                          ) : data.mot === "Air" ? (
-                            <LocalAirportIcon className={classes.airIcon} />
+                        {data?.modeOfTransport ? (
+                          data.modeOfTransport === "Land" ||
+                          data.modeOfTransport === "L-Land" ? (
+
+                           <img src={Land} alt="404" />
+                          ) : data.modeOfTransport === "Air" ? (
+
+                            <img src={Air} alt="404" />
                           ) : (
-                            <DirectionsBoatIcon className={classes.shipIcon} />
+                            <img src={Sea} alt="404" />
                           )
                         ) : null}
                       </div>
                     )}
 
                     {column.id === "jobNo" ? (
-                    <Link
-                      className={`${classes.link} ${classes.TableCellInfo}`} onClick={() => onClickJobLink(data)}
-                    >
-                      {data[column.id]}
-                    </Link>
-                  ) : column.id !== "srNo" ? (
-                    <Typography className={classes.TableCellInfo}>
-                      {" "}
-                      {data[column.id]}{" "}
-                    </Typography>
-                  ) : (
-                    ""
-                  )}
-                    {/* {column.id !== "srNo" ? (
+                      <Link
+                        className={`${classes.link} ${classes.TableCellInfo}`}
+                        onClick={() => onClickJobLink(data)}
+                      >
+                        {data[column.id]}
+                      </Link>
+                    ) : column.id !== "srNo" ? (
                       <Typography className={classes.TableCellInfo}>
                         {" "}
                         {data[column.id]}{" "}
                       </Typography>
                     ) : (
                       ""
-                    )} */}
-                  </TableCell>
+                    )}
+              </TableCell>
                 );
               })}
             </TableRow>
           </AccordionSummary>
-          {columns.map((row, i) => (
-            <AccordionDetails className={classes.accordionDetail}>
-              <TableRow
-                className={classes.TableRow2}
-               
-              >
-                {i > 0
-                  ? row.row.map((column) => {
-                      return (
-                        <TableCell
-                          style={{
-                            width: column.minWidth,
-                            flexGrow: column.flexGrow,
-                            left: column.left,
-                          }}
-                          key={column.id}
-                          className={classes.tableBodyCell}
-                        >
-                          <Typography className={classes.TableCellInfo}>
-                            {" "}
-                            {data[column.id]}{" "}
-                          </Typography>
-                        </TableCell>
-                      );
-                    })
-                  : null}
-              </TableRow>
-            </AccordionDetails>
-          ))}
+          <AccordionDetails className={classes.accordionDetail}>
+            {columns.map((row, i) =>
+              i > 0 ? (
+                <div
+                  className={
+                    i === 1
+                      ? classes.accordionDetailsContainer
+                      : classes.accordionDetailsContainer2
+                  }
+                  key={i}
+                >
+                  <TableRow className={classes.TableRow2} key={i}>
+                    {row.row.map((column) => (
+                      <TableCell
+                        style={{
+                          width: column.minWidth,
+                          flexGrow: column.flexGrow,
+                          left: column.left,
+                        }}
+                        key={column.id}
+                        className={classes.tableBodyCell}
+                      >
+                        <Typography className={classes.TableCellInfo}>
+                          {data[column.id]}
+                        </Typography>
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                </div>
+              ) : null
+            )}
+          </AccordionDetails>
         </Accordion>
 
         {isHovered && (hover || hover === undefined) ? (
@@ -303,7 +331,6 @@ export default function Joblisttablebody(props) {
                 ? classes.iconsboxClosed
                 : classes.iconsboxOpened
             }
-          
           >
             <MenuBar1
               accordionOpen={accordionOpen}

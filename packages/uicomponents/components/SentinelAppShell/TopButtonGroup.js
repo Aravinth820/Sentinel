@@ -48,14 +48,24 @@ const TopButtonGroup = (props) => {
   const classes = useStyles();
   const {tabsData}=props
   const [jobListCurrentTab, setJobListCurrentTab] = React.useState(0);
-  const [tabNameSelect,setTabName]=React.useState('Files');
+
+
+  let tabName
+  React.useEffect(()=>{
+    setJobListCurrentTab(0)
+    tabName=tabsData[0].name
+    props.setSelectedTabName(tabName)
+    
+    localStorage.setItem('tabName', JSON.stringify(tabName));
+    
+  },[tabsData])
  
 
-let tabName
+
   const handleTabChange = (event, newValue) => {
     setJobListCurrentTab(newValue);
     tabName=tabsData[newValue].name
-    setTabName(tabName)
+  
   
     props.setSelectedTabName(tabName)
     localStorage.setItem('tabName', JSON.stringify(tabName));
@@ -71,7 +81,8 @@ let tabName
       <Grid>
         <AppBar position="static" elevation={0} className={classes.appBar}>
           <Tabs
-            value={jobListCurrentTab}
+            //value={props.name==="checkListPage"?checkListCurrentTab:jobListCurrentTab}
+                        value={jobListCurrentTab}
             onChange={handleTabChange}
             className={classes.tabs}
           >

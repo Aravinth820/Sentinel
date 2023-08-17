@@ -41,9 +41,16 @@ const useStyles = makeStyles((theme) => ({
       fontFamily: "Inter !important",
       fontSize:"12px !important",
       height:"16px !important",
-      fontWeight:"600 !important",
+      fontWeight:"400 !important",
       padding:"4px 8px 4px 8px !important",
-    }
+    },
+    "& .MuiInput-root:before": {
+      
+      borderBottom: '1px solid #EFF0F1 !important',
+    },
+    "& .MuiInput-root:after": {
+      borderBottom: "1px solid  #3874FF !important",
+    },
   },
   root1: {
     '& > *': {
@@ -63,18 +70,23 @@ const useStyles = makeStyles((theme) => ({
       fontFamily: "Inter !important",
       fontSize:"12px !important",
       height:"16px !important",
-      fontWeight:"600 !important",
-      padding:"8px !important",
-    }
+      fontWeight:"400 !important",
+      padding:"8px !important"
+    },
+    "& .MuiInput-root:before": {
+      
+      borderBottom:'1px solid #EFF0F1 !important' ,
+    },
+    "& .MuiInput-root:after": {
+      borderBottom: "1px solid  #3874FF !important",
+    },
   },
   underline: {
     '&:hover:not(.Mui-disabled):before': {
       borderBottomColor: '#3874FF !important',
     },
-    '&:not(:hover):not(.Mui-disabled):before': {
-      borderBottom: "1px solid #EFF0F1",
-    },
   },
+  
   mandatoryIcon:{
      padding:"0px",
      color:"#CF3B3B",
@@ -100,31 +112,36 @@ const useStyles = makeStyles((theme) => ({
     paddingTop:"4px",
     marginTop:"0px !important"
   },
+  enteringText:{
+    '& .MuiInput-input':{
+      fontWeight:"600 !important",
+    }
+  },
+ 
 }))
 
 const TextFields = (props) => {
   const classes = useStyles(props.styles);
   const {size,variant, placeholder, mandatory, iconType, helperText, showEndAdornment, showStartAdornment, isDisabled,disableLine,isNormalField ,style,name,id,className ,error, value} = props
-  //  const { ws, jobId, isWebSocketAlive, fieldKey, userId } = props.propData
+   const { ws, jobId, isWebSocketAlive, fieldKey, userId } = props.propData
+ console.log('propData in TextField',props.propData)
   
- 
+  const [isEntering, setEntering] = useState(false)
   const [read, setRead] = React.useState(false)
   const [data, setData] = useState(value)
   const [disable, setDisable] = React.useState(disableLine)
   
  
 
-  // React.useEffect(() => {
-  //   setData(value)
-  // } )
-  // React.useEffect(() => {
-  //   eventBus.subscribeToEvent(fieldKey, (data) => {
-  //     setData(data.eventData.changedValue)
-  //   })
-  //   return () => {
-  //     eventBus.removeEventSubscription(fieldKey)
-  //   }
-  // }, [fieldKey])
+
+  React.useEffect(() => {
+    eventBus.subscribeToEvent(fieldKey, (data) => {
+      setData(data.eventData.changedValue)
+    })
+    return () => {
+      eventBus.removeEventSubscription(fieldKey)
+    }
+  }, [fieldKey])
 
 
   const handleMouseEnter = () => {
@@ -140,21 +157,25 @@ const TextFields = (props) => {
   };
 
   const handleChange = event => {
+    setEntering(true)
     setData(event.target.value)
     if (disable === true) {
       setDisable(false)
     }
   }
 
-  const handleDisable = (event) => {
+  const handleOnBlur = (event) => {
+
     setData(event.target.value)
-  //  const wssData = { jobId: jobId, userId: userId, initialValue: data, changedValue: event.target.value, field: fieldKey, ws }
-   // webSocketSendData(wssData)
+   const wssData = { jobId: jobId, userId: userId, initialValue: data, changedValue: event.target.value, field: fieldKey, ws }
+   webSocketSendData(wssData)
     setDisable(true)
+    setEntering(false)
   }
-  
+
   return (
     <TextField
+     key={props.keyName}
       autoComplete='off'
       size={size?size:"medium"}
       variant={variant}
@@ -162,10 +183,10 @@ const TextFields = (props) => {
       helperText={helperText ? helperText : ""}
       onChange={handleChange}
            // error = {Boolean(error)}
-      onBlur={handleDisable}
+      onBlur={handleOnBlur}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={isNormalField? classes.root1:classes.root}
+      className={isNormalField? `${classes.root1} ${isEntering && classes.enteringText}`: `${classes.root} ${isEntering && classes.enteringText}`}
       disabled={isDisabled}
       value={data}
       style={{...className,...style}}

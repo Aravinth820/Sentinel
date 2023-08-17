@@ -12,7 +12,8 @@ import Joblisttablebody from "./joblistAccordion";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { makeStyles } from "@mui/styles";
 import Checkbox from "@mui/material/Checkbox";
-import FilterAndSort from "../FilterAndSort.js/FilterandSort";
+import FilterAndSort from "../FilterAndSort/FilterandSort";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const useStyles = makeStyles(() => ({
   tableContainer: {
@@ -70,13 +71,27 @@ const useStyles = makeStyles(() => ({
 
   accordianSummary: {
     width: "100%",
-    marginBottom: "-1rem !important",
+    minHeight:'0px !important',
+    marginBottom:'8px !important',
+   //border:'2px solid green !important',
+    '& .MuiAccordionSummary-content.Mui-expanded':{
+      margin:"0px",
+      //border:'2px solid blue !important'
+    }
+   // marginBottom: "-1rem !important",
   },
   accordionDetails: {
-    marginTop: "-2.5rem",
+    //marginTop: "-2.5rem",
+    padding:'0px 16px 16px !important'
   },
   accordionDetailsContainer: {
-    marginTop: "1rem",
+    marginBottom:'8px !important',
+    //marginTop: "1rem",
+  //border:'2px solid red !important'
+  },
+  accordionDetailsContainer2: {
+    //marginTop: "1rem",
+   //border:'2px solid blue !important'
   },
   tableRow: {
     display: "flex !important",
@@ -94,6 +109,7 @@ const useStyles = makeStyles(() => ({
     // fontWeight: "400 !important",
     borderBottom: "none !important",
     position: "relative",
+    padding:'4px 8px 4px 8px !important'
   },
   tableCellContainer: {
     display: "flex",
@@ -148,26 +164,90 @@ const useStyles = makeStyles(() => ({
 }));
 
 const myArray = [
-  { id: 1, label: 'Schneider Electric India', checked: false, fieldName: 'Schneider Electric India' },
-  { id: 2, label: 'TaTa Motors', checked: false, fieldName: 'TaTa Motors' },
-  { id: 3, label: 'V-GUARD INDUSTRIES LIMITED', checked: false, fieldName: 'V-GUARD INDUSTRIES LIMITED' },
-  { id: 4, label: 'BERRY N BLOSSOM THE PVT LTD', checked: false, fieldName: 'BERRY N BLOSSOM THE PVT LTD' },
-  { id: 5, label: 'Schneider Electric India', checked: false, fieldName: 'Schneider Electric India' },
-  { id: 6, label: 'Schneider Electric India', checked: false, fieldName: 'Schneider Electric India' },
-  { id: 7, label: 'TaTa Motors', checked: false, fieldName: 'TaTa Motors' },
-  { id: 8, label: 'Schneider Electric India', checked: false, fieldName: 'Schneider Electric India' },
-  { id: 9, label: 'BERRY N BLOSSOM THE PASTRY LAND PVT LTD', checked: false, fieldName: 'BERRY N BLOSSOM THE PASTRY LAND PVT LTD' },
-  { id: 10, label: 'BERRY N BLOSSOM THE PASTRY LAND PVT LTD', checked: false, fieldName: 'BERRY N BLOSSOM THE PASTRY LAND PVT LTD' },
-  { id: 11, label: 'V-GUARD INDUSTRIES LIMITED', checked: false, fieldName: 'V-GUARD INDUSTRIES LIMITED' },
-  { id: 12, label: 'V-GUARD INDUSTRIES LIMITED', checked: false, fieldName: 'V-GUARD INDUSTRIES LIMITED' },
-  { id: 13, label: 'V-GUARD INDUSTRIES LIMITED', checked: false, fieldName: 'V-GUARD INDUSTRIES LIMITED' },
-  { id: 14, label: 'TaTa Motors', checked: false, fieldName: 'TaTa Motors' },
-  { id: 15, label: 'TaTa Motors', checked: false, fieldName: 'TaTa Motors' },
-  { id: 16, label: 'Schneider Electric India', checked: false, fieldName: 'Schneider Electric India' },
-  { id: 17, label: 'Schneider Electric India', checked: false, fieldName: 'Schneider Electric India' },
+  {
+    id: 1,
+    label: "Schneider Electric India",
+    checked: false,
+    fieldName: "Schneider Electric India",
+  },
+  { id: 2, label: "TaTa Motors", checked: false, fieldName: "TaTa Motors" },
+  {
+    id: 3,
+    label: "V-GUARD INDUSTRIES LIMITED",
+    checked: false,
+    fieldName: "V-GUARD INDUSTRIES LIMITED",
+  },
+  {
+    id: 4,
+    label: "BERRY N BLOSSOM THE PVT LTD",
+    checked: false,
+    fieldName: "BERRY N BLOSSOM THE PVT LTD",
+  },
+  {
+    id: 5,
+    label: "Schneider Electric India",
+    checked: false,
+    fieldName: "Schneider Electric India",
+  },
+  {
+    id: 6,
+    label: "Schneider Electric India",
+    checked: false,
+    fieldName: "Schneider Electric India",
+  },
+  { id: 7, label: "TaTa Motors", checked: false, fieldName: "TaTa Motors" },
+  {
+    id: 8,
+    label: "Schneider Electric India",
+    checked: false,
+    fieldName: "Schneider Electric India",
+  },
+  {
+    id: 9,
+    label: "BERRY N BLOSSOM THE PASTRY LAND PVT LTD",
+    checked: false,
+    fieldName: "BERRY N BLOSSOM THE PASTRY LAND PVT LTD",
+  },
+  {
+    id: 10,
+    label: "BERRY N BLOSSOM THE PASTRY LAND PVT LTD",
+    checked: false,
+    fieldName: "BERRY N BLOSSOM THE PASTRY LAND PVT LTD",
+  },
+  {
+    id: 11,
+    label: "V-GUARD INDUSTRIES LIMITED",
+    checked: false,
+    fieldName: "V-GUARD INDUSTRIES LIMITED",
+  },
+  {
+    id: 12,
+    label: "V-GUARD INDUSTRIES LIMITED",
+    checked: false,
+    fieldName: "V-GUARD INDUSTRIES LIMITED",
+  },
+  {
+    id: 13,
+    label: "V-GUARD INDUSTRIES LIMITED",
+    checked: false,
+    fieldName: "V-GUARD INDUSTRIES LIMITED",
+  },
+  { id: 14, label: "TaTa Motors", checked: false, fieldName: "TaTa Motors" },
+  { id: 15, label: "TaTa Motors", checked: false, fieldName: "TaTa Motors" },
+  {
+    id: 16,
+    label: "Schneider Electric India",
+    checked: false,
+    fieldName: "Schneider Electric India",
+  },
+  {
+    id: 17,
+    label: "Schneider Electric India",
+    checked: false,
+    fieldName: "Schneider Electric India",
+  },
   // Add more checkboxes as needed
 ];
-
 
 const TableComponents = {
   Scroller: React.forwardRef((props, ref) => (
@@ -191,8 +271,12 @@ export default function ListTable(props) {
     props.hover || props.hover === undefined ? false : props.accordion
   );
 
-  const { columns, checkbox, hover ,onClickJobLink } = props;
+  const { columns, checkbox, hover, onClickJobLink } = props;
   const classes = useStyles();
+  React.useEffect(() => {
+    setScrolledListData(props.listData);
+    console.log("data", props.listData);
+  }, [props.listData]);
   React.useEffect(() => {
     setFullAccordianOpen(props.accordion);
   }, [props.accordion]);
@@ -201,15 +285,38 @@ export default function ListTable(props) {
     setHeaderCheckbox(!headerCheckbox);
   };
 
-  const handleData = (finalList) => {
-    // const filterFields = options.map(field => {
-    //   const checked = checkedIds.includes(field.id)
-    //   return { ...field, checked }
-    // })
-    setListItemData(finalList)
+  const handleData = () => {};
 
-
-  }
+  const itemContent = (index, rowData) => {
+    if (props.loading) {
+      return (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100px",
+          }}
+        >
+          <CircularProgress />{" "}
+          {/* Replace Spinner with your preferred loading indicator */}
+        </div>
+      );
+    } else {
+      return (
+        <Joblisttablebody
+          data={rowData}
+          columns={columns}
+          onClickJobLink={onClickJobLink}
+          accordionFullOpen={fullAccordianOpen}
+          index={index}
+          checkbox={checkbox}
+          headerCheckbox={headerCheckbox}
+          hover={hover}
+        />
+      );
+    }
+  };
 
   return (
     <div className={classes.tableContainer}>
@@ -278,49 +385,53 @@ export default function ListTable(props) {
                       ))}
                     </TableRow>
                   </AccordionSummary>
-                  {columns.map((row, i) => (
-                    <AccordionDetails className={classes.accordionDetails}>
-                      <div className={classes.accordionDetailsContainer}>
-                        <TableRow className={classes.tableRow} key={i}>
-                          {i > 0
-                            ? row.row.map((headCell) => (
-                                <TableCell
-                                  style={{
-                                    width: headCell.minWidth,
-                                    flexGrow: headCell.flexGrow,
-                                    left: headCell.left,
-                                  }}
-                                  key={headCell.id}
-                                  className={classes.tableCell}
-                                >
-                                  <div className={classes.tableCellContainer}>
-                                    <span className={classes.tableCellName}>
-                                      {headCell.label}
-                                    </span>
-                                    {headCell.filter && 
-                                     <FilterAndSort 
-                                     name='Table'
-                                     data={headCell}
-                                     listData={listItemsData}
-                                     icon={<FilterListIcon/>}
-                                     filterType={headCell.filterType}
-                                     handleData={handleData}
-                                     boxPosition={headCell.boxPosition}
-                                       label={headCell.label}
-                                     />
-                                        }
-                                  </div>
-                                </TableCell>
-                              ))
-                            : null}
-                        </TableRow>
-                      </div>
-                    </AccordionDetails>
-                  ))}
+                  <AccordionDetails className={classes.accordionDetails}>
+                    {columns.map((row, i) =>
+                      i > 0 ? (
+                        <div
+                          className={i===1?classes.accordionDetailsContainer:classes.accordionDetailsContainer2}
+                          key={i}
+                        >
+                          <TableRow className={classes.tableRow} key={i}>
+                            {row.row.map((headCell) => (
+                              <TableCell
+                                style={{
+                                  width: headCell.minWidth,
+                                  flexGrow: headCell.flexGrow,
+                                  left: headCell.left,
+                                }}
+                                key={headCell.id}
+                                className={classes.tableCell}
+                              >
+                                <div className={classes.tableCellContainer}>
+                                  <span className={classes.tableCellName}>
+                                    {headCell.label}
+                                  </span>
+                                  {headCell.filter && (
+                                    <FilterAndSort
+                                      name="Table"
+                                      data={headCell}
+                                      listData={myArray}
+                                      icon={<FilterListIcon />}
+                                      filterType={headCell.filterType}
+                                      handleData={handleData}
+                                      boxPosition={headCell.boxPosition}
+                                    />
+                                  )}
+                                </div>
+                              </TableCell>
+                            ))}
+                          </TableRow>
+                        </div>
+                      ) : null
+                    )}
+                  </AccordionDetails>
                 </Accordion>
               </div>
             </TableHead>
           )}
+          //  itemContent={itemContent}
+
           itemContent={(index, data) => {
             return (
               <Joblisttablebody
