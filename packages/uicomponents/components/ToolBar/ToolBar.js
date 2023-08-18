@@ -754,17 +754,23 @@ export const FilterDropDown = () => {
         }
         setSelectedItem(selectedItem)
     }
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
+
     const handleData = (checkedIds, payload) => {
-        setAppliedFilters((prevState) => [...prevState, ...payload.selected])
         const filterFields = listData.map(field => {
             const checked = checkedIds.includes(field.id)
             return { ...field, checked }
         })
+
+        const checkedFields = payload.selected.map(field => {
+            const selected = checkedIds.includes(field.id)
+            return { ...field, checked:selected }
+        })
         setListData(filterFields)
-        console.log(checkedIds, payload)
+        setAppliedFilters(checkedFields)
     }
 
     const handleChipDelete = (id) => {
@@ -775,7 +781,7 @@ export const FilterDropDown = () => {
         setListData(canceledFields)
 
         setAppliedFilters((prevChips) => prevChips.filter((c) => c.id !== id))
-        console.log(id)
+        
         
     }
 
