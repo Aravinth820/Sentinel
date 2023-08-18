@@ -285,7 +285,9 @@ export default function ListTable(props) {
     setHeaderCheckbox(!headerCheckbox);
   };
 
-  const handleData = () => {};
+  const handleData = (selectedItems) => {
+      console.log(selectedItems, 'selected')
+  };
 
   const itemContent = (index, rowData) => {
     if (props.loading) {

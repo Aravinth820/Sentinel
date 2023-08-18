@@ -149,6 +149,7 @@ export default function SearchTextBox(props) {
  const handleClearSearch = () => {
    setSearchValue('')
    setIsTyping(false)
+   handleSearchInputChange({value:'', name: text})
  }
   const handleMenuClick = (selectedValue, optionValue) => {
      return selectedValue === optionValue ? classes.selectedMenuItem: classes.menuItem

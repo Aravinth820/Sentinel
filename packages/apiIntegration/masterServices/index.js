@@ -1,4 +1,4 @@
-import { FetchApiCall } from "../ConfigApi/FetchApi";
+//import { FetchApiCall } from "../ConfigApi/FetchApi";
 
 export const masterServices = {
 
