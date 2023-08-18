@@ -9,10 +9,12 @@ import WarningOutlinedIcon from "@mui/icons-material/WarningOutlined"
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined"
 import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore"
 import ToolBarReusable from "../../../../../uicomponents/components/ToolBar/ToolBar"
+import { AuthContext } from "../SignIn/AuthContext"
 
 
 
 export default class MyJobs extends Component {
+  static contextType = AuthContext
   constructor(props) {
     super(props)
     this.state = {

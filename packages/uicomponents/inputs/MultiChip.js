@@ -5,7 +5,7 @@ import Chip from '@mui/material/Chip';
 import { makeStyles } from '@mui/styles';
 import Avatar from 'react-avatar';
 import cancel from '../assests/images/close.svg'
-import eventBus from '../../apiIntegration/WebSocket/webSocketSendData';	
+import eventBus from '../../apiIntegration/WebSocket/eventBus';	
 import webSocketSendData from '../../apiIntegration/WebSocket/webSocketSendData';
 
 
@@ -106,11 +106,12 @@ const MultiChipText = (props) => {
   const [chips, setChips] = useState([])
   const [inputValue, setInputValue] = useState('')
   const [disable, setDisable] = React.useState(true)
+  const [data , setData] = React.useState("")
 
   const handleBlur = (event) => {
     setDisable(false)
-    addChip(event)
-          const wssData = { jobId: jobId, userId: userId, initialValue: data, changedValue: event.target.value, field: fieldKey, ws }
+    addChip()
+    const wssData = { jobId: jobId, userId: userId, initialValue: data, changedValue: event.target.value, field: fieldKey, ws }
    webSocketSendData(wssData)
   }
 

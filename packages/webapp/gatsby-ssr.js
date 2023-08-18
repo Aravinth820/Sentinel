@@ -10,7 +10,6 @@
 
 
 import CgateAppShell from "./src/components/AppShell/GlobalAppShell";
-
-
-
+import RootWrapper from "./src/components/AppShell/RootWrapper";
+export const wrapRootElement=RootWrapper
 export const wrapPageElement=CgateAppShell

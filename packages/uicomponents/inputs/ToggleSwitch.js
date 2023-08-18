@@ -49,6 +49,7 @@ const CustomSwitch = styled(Switch)(({ theme, isCorrect }) => ({
 
 const ToggleSwitch = (props) => {
   const [isCorrect, setIsCorrect] = useState(props.toggle);
+  const [data , setData] = React.useState(props.toggle)
    const { ws, jobId, isWebSocketAlive, fieldKey, userId } = props.propData
   React.useEffect(() => {
     eventBus.subscribeToEvent(fieldKey, (data) => {
@@ -65,6 +66,13 @@ const ToggleSwitch = (props) => {
     webSocketSendData(wssData)
   };
 
+  const handleKeyDown = (event)=>{
+      if(event.key==="Enter"){
+        event.target.checked = !event.target.checked
+        handleChange(event)
+      }
+  }
+
   return (
     <Box key={props.keyName}>
       <FormControlLabel
@@ -75,6 +83,7 @@ const ToggleSwitch = (props) => {
             onChange={handleChange}
             isCorrect={isCorrect}
             className="custom-switch-class"
+            onKeyDown={handleKeyDown}
           />
         }
       />
