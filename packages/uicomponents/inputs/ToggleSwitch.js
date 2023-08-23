@@ -49,6 +49,7 @@ const CustomSwitch = styled(Switch)(({ theme, isCorrect }) => ({
 
 const ToggleSwitch = (props) => {
   const [isCorrect, setIsCorrect] = useState(props.toggle);
+  const [data,setData]=useState('')
    const { ws, jobId, isWebSocketAlive, fieldKey, userId } = props.propData
   React.useEffect(() => {
     eventBus.subscribeToEvent(fieldKey, (data) => {

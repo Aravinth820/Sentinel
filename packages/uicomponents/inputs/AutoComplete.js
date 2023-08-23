@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
+import { TextField, Icon } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { TextField, Icon } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import errorImg from '../assests/images/errorImg.svg'
@@ -212,8 +212,9 @@ const AutoComplete = (props) => {
     name,style
   } = props;
 
-  const [data, setData] = React.useState( "");
+  const [data, setData] = React.useState(props.value?props.value:'');
   const [isHovered, setIsHovered] = React.useState(false);
+  
   const [isEntering, setEntering] = useState(false)
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -223,10 +224,6 @@ const AutoComplete = (props) => {
     setIsHovered(false);
   };
 
-  React.useEffect(() => {
-    setData(props.value);
-   
-  }, [props.value]);
    const { ws, jobId, isWebSocketAlive, fieldKey, userId } = props.propData
 
    React.useEffect(() => {
@@ -237,6 +234,7 @@ const AutoComplete = (props) => {
       eventBus.removeEventSubscription(fieldKey)
     }
   }, [fieldKey])
+ 
 
  const handleInputFocus=(()=>{
   setEntering(true)

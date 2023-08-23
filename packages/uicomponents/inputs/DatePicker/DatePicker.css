@@ -4,24 +4,24 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background:  #32394C;
+    background:  #CDCFD3 !important;
     height: 154px;
-    width: 185px;
+    width: 5px;
     border-radius: 22px;
 }
 
 ::-webkit-scrollbar-track {
     left: 800px;
     height: 723px;
-    background:  #050E25
+    background: transparent !important;
 }
 
 ::-webkit-scrollbar-thumb:horizontal {
-    background: #075779;
+    background:#CDCFD3 !important;
     height: 185px
 }
 
 ::-webkit-scrollbar-track:horizontal {
-    background: #999;
+    background:transparent !important;
     height: 723px
 }   

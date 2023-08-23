@@ -28,7 +28,7 @@ const useStyles = makeStyles(() => ({
     background: "#FDFEFF  !important",
   },
   virtualizedTable: {
-    height: "758px !important",
+     height: "80vh !important",
     marginLeft: "0.8rem",
     boxShadow: "none !important",
     background: "#FDFEFF  !important",
@@ -39,21 +39,21 @@ const useStyles = makeStyles(() => ({
     "& .MuiPaper-root": {
       boxShadow: "none",
     },
-    "&::-webkit-scrollbar": {
-      width: "5px",
-      height: "5px",
-      backgroundColor: "transparent !important",
-    },
-    "&::-webkit-scrollbar-thumb": {
-      backgroundColor: "#CDCFD3 !important",
-      borderRadius: "4px",
-    },
-    "&::-webkit-scrollbar-track": {
-      backgroundColor: "transparent !important",
-      borderRadius: "4px",
-      marginTop: "181px !important",
-      height: "20px !important",
-    },
+      "&::-webkit-scrollbar": {
+        width: "5px",
+        height: "5px",
+        backgroundColor: "transparent !important",
+      },
+      "&::-webkit-scrollbar-thumb": {
+        backgroundColor: "#CDCFD3 !important",
+        borderRadius: "4px",
+      },
+      "&::-webkit-scrollbar-track": {
+        backgroundColor: "transparent !important",
+        borderRadius: "4px",
+        marginTop: "122px !important",
+        height: "20px !important",
+      },
   },
   tableHeadContainer: {
     display: "flex !important",
@@ -77,8 +77,12 @@ const useStyles = makeStyles(() => ({
     '& .MuiAccordionSummary-content.Mui-expanded':{
       margin:"0px",
       //border:'2px solid blue !important'
-    }
-   // marginBottom: "-1rem !important",
+    },
+    '&.Mui-focusVisible':{
+      backgroundColor:'transparent !important',
+     
+     },
+   
   },
   accordionDetails: {
     //marginTop: "-2.5rem",
@@ -269,6 +273,7 @@ export default function ListTable(props) {
   const [fullAccordianOpen, setFullAccordianOpen] = React.useState(
     props.hover || props.hover === undefined ? false : props.accordion
   );
+  
 
   const { columns, checkbox, hover, onClickJobLink } = props;
   const classes = useStyles();
@@ -325,7 +330,8 @@ export default function ListTable(props) {
         <UnfoldMoreIcon onClick={() => handleChange()} />
       )} */}
       <div className={classes.table}>
-        <TableVirtuoso
+        <TableVirtuoso 
+
           className={`${classes.virtualizedTable} ${
             columns.length === 3
               ? "table1"

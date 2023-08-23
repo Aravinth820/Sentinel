@@ -347,15 +347,22 @@ const handleData = (sectionIds) => {
  const filteredAddData = data.map((add) => {
  if (sectionIds.includes(add.id)){
  add.checked=true
+
  }
  else if (add.id !== "jobDetails" && add.id !== "invoiceDetails"){
  add.checked = false
+ 
  }
  return add
  })
  setData(filteredAddData)
  //setOpenFilter(false)
  props.setLeftNavigationFields(filteredAddData)
+ 
+ 
+
+
+
  
  
 }
@@ -432,7 +439,7 @@ const handleAddItem =(event,index) => {
  style={{paddingBottom: "0.5rem",marginLeft:"8px", display: "flex", flexDirection: "column", }}
  className={open ? classes.drawerOpen : classes.drawerClose}
  >
- {/* <ListItem key="sentinel-logo">
+ <ListItem key="sentinel-logo">
  <ListItemIcon>
  {open? <img src={sentinelFullLogo} alt="Sentinel"/>: <img src={sentinelLogo} alt="Sentinel"/>} 
  </ListItemIcon>
@@ -448,7 +455,7 @@ const handleAddItem =(event,index) => {
  className={classes.arrow}
  />
  )}
- </ListItem> */}
+ </ListItem>
  </List>
  {!openInvoice? <List
  style={{paddingBottom: "0px",paddingTop:"0px",overflowY: "auto",display: "flex",flexDirection: "column",width:open?"228px":"51px",flex: 1,marginLeft:"8px"}}

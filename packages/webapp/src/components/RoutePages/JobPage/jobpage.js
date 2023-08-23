@@ -104,8 +104,10 @@ export default class MyJobs extends Component {
           }}
         />
         <ListTable
-          listData={this.state.scrolledListData}
+        listData={this.state.scrolledListData}
+         //listData={[{jobNo:'ICB/111'},{jobNo:'ICB/222'}]}
           columns={importColumns}
+        
           onClickJobLink={this.onClickJobLink}
           accordion={this.state.fullAccordianOpen}
           loading={this.state.loading}

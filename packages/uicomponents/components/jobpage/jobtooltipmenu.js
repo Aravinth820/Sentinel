@@ -8,7 +8,7 @@ export const MenuBar1 = (props) => {
   const { accordionOpen, setAccordionOpen } = props;
 
   let AccordionOpen = accordionOpen;
-
+  
   const handleChange = () => {
     let accordion = !accordionOpen;
     setAccordionOpen(accordion);

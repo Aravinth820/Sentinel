@@ -5,31 +5,31 @@ const JobDetailSectionFields = [
     checked: false,
     fieldHeaders: [
       {
-        name: "Job No.",
+        name: "Job No.",width:'45%'
       },
-      { labelName: "CodeNumber", type: "separator", name: "", width: "5%" },
+      { type: "separator", name: "", width: "5%" },
       {
-        name: "Job Date",
+        name: "Job Date",width:'45%'
       },
     ],
 
     input: [
       {
+        id: "jobNo",
         labelName: "Job No.",
         type: "textField",
-        name: "partCode",
         width: "45%",
         placeholder: "Job No.",
-        id: "jobNo",
       },
-      { labelName: "CodeNumber", type: "separator", name: "", width: "5%" },
+      { type: "separator", name: "", width: "5%" },
       {
+        id: "jobCreationDate",
         labelName: "Job Date",
         type: "textField",
         name: "jobDate",
         width: "45%",
         placeholder: "Job Date",
-        id: "jobCreationDate",
+        
       },
     ],
   },
@@ -40,11 +40,11 @@ const JobDetailSectionFields = [
     checked: false,
     fieldHeaders: [
       {
-        name: "BE No.",
+        name: "BE No.",width:'45%'
       },
-      { labelName: "CodeNumber", type: "separator", name: "", width: "5%" },
+      {  type: "separator", name: "", width: "5%" },
       {
-        name: "BE Date",
+        name: "BE Date",width:'45%'
       },
     ],
     input: [
@@ -52,16 +52,14 @@ const JobDetailSectionFields = [
         id: "beNo",
         labelName: "beNo",
         type: "textField",
-        name: "description",
         width: "45%",
         placeholder: "BE No.",
       },
-      { labelName: "CodeNumber", type: "separator", name: "", width: "5%" },
+      {  type: "separator", name: "", width: "5%" },
       {
         id: "beDate",
         labelName: "beDate",
         type: "textField",
-        name: "beDate",
         width: "45%",
         placeholder: "BE Date",
       },
@@ -73,28 +71,27 @@ const JobDetailSectionFields = [
     checked: false,
     fieldHeaders: [
       {
-        name: "Created By",
+        name: "Created By",width:'45%'
       },
-      { labelName: "CodeNumber", type: "separator", name: "", width: "5%" },
+      {  type: "separator", name: "", width: "5%" },
       {
-        name: "Date",
+        name: "Date",width:'45%'
       },
     ],
     input: [
       {
-        labelName: "createdBy",
+        id: "createdBy",
+        labelName: "Created By",
         type: "dropDown",
-        name: "createdBy",
         add: true,
         width: "45%",
         placeholder: "Created By",
       },
-      { labelName: "CodeNumber", type: "separator", name: "", width: "5%" },
+      { type: "separator", name: "", width: "5%" },
       {
         id: "createDateTime",
-        labelName: "date",
+        labelName: "Date",
         type: "textField",
-        name: "date",
         placeholder: "Date",
         width: "45%",
       },
@@ -107,23 +104,23 @@ const JobDetailSectionFields = [
     checked: false,
     fieldHeaders: [
       {
-        name: "Last Updated By",
+        name: "Last Updated By",width:'45%'
       },
-      { labelName: "CodeNumber", type: "separator", name: "", width: "5%" },
+      {  type: "separator", name: "", width: "5%" },
       {
-        name: "Date",
+        name: "Date",width:'45%'
       },
     ],
     input: [
       {
         id: "updatedBy",
-        labelName: "updatedBy",
+        labelName: "Updated By",
         type: "dropDown",
         name: "updatedBy",
         placeholder: "Updated By",
         width: "45%",
       },
-      { labelName: "CodeNumber", type: "separator", name: "", width: "5%" },
+      { type: "separator", name: "", width: "5%" },
       {
         id: "date",
         labelName: "date",
@@ -139,7 +136,7 @@ const JobDetailSectionFields = [
     id: "assingedTo",
     fieldHeaders: [
       {
-        name: "Assinged To",
+        name: "Assinged To",width:'100%'
       },
     ],
 
@@ -147,7 +144,7 @@ const JobDetailSectionFields = [
     input: [
       {
         id: "assingedTo",
-        labelName: "assingedTo",
+        labelName: "Assinged To",
         type: "multiChipText",
         name: "assingedTo",
         width: "100%",
@@ -160,7 +157,7 @@ const JobDetailSectionFields = [
     id: "jobType",
     fieldHeaders: [
       {
-        name: "Job Type",
+        name: "Job Type",width:'100%'
       },
     ],
     checked: false,
@@ -168,7 +165,7 @@ const JobDetailSectionFields = [
     input: [
       {
         id: "jobType",
-        labelName: "jobType",
+        labelName: "Job Type",
         type: "dropDown",
         name: "jobType",
         width: "100%",
@@ -182,7 +179,7 @@ const JobDetailSectionFields = [
     id: "modeOfTransport",
     fieldHeaders: [
       {
-        name: "MOT",
+        name: "MOT",width:'100%'
       },
     ],
 
@@ -190,7 +187,7 @@ const JobDetailSectionFields = [
     input: [
       {
         id: "modeOfTransport",
-        labelName: "mot",
+        labelName: "MOT",
         type: "dropDown",
         name: "mot",
         width: "100%",
@@ -203,14 +200,14 @@ const JobDetailSectionFields = [
     id: "beType",
     fieldHeaders: [
       {
-        name: "BE Type",
+        name: "BE Type",width:'100%'
       },
     ],
     checked: false,
     input: [
       {
         id: "beType",
-        labelName: "beType",
+        labelName: "BE Type",
         type: "dropDown",
         name: "beType",
         width: "100%",
@@ -221,19 +218,19 @@ const JobDetailSectionFields = [
   {
     fieldName: "Custom House Code",
     id: "customsHouseCode",
+    checked: false,
     fieldHeaders: [
       {
-        name: "Custom House Code",
+        name: "Custom House Code",width:'100%'
       },
     ],
 
-    checked: false,
+   
     input: [
       {
         id: "customsHouseCode",
-        labelName: "customHouseCode",
+        labelName: "Custom House Code",
         type: "dropDown",
-        name: "customHouseCode",
         width: "100%",
         placeholder: "Custom House Code",
       },
@@ -242,32 +239,31 @@ const JobDetailSectionFields = [
   {
     fieldName: "Warehouse BE No",
     id: "warehouseBeNo",
+    checked: false,
     fieldHeaders: [
       {
-        name: "Warehouse BE No.",
+        name: "Warehouse BE No.",width:'45%'
       },
-      { labelName: "CodeNumber", type: "separator", name: "", width: "5%" },
+      {  type: "separator", name: "", width: "5%" },
       {
-        name: "WareHouse BE Date",
+        name: "WareHouse BE Date",width:'45%'
       },
     ],
 
-    checked: false,
+   
     input: [
       {
         id: "warehouseBeNo",
-        labelName: "warehouseBeNo",
+        labelName: "Warehouse BE No.",
         type: "textField",
-        name: "warehouseBeNo",
         width: "45%",
         placeholder: "Warehouse BE No.",
       },
-      { labelName: "CodeNumber", type: "separator", name: "", width: "5%" },
+      {  type: "separator", name: "", width: "5%" },
       {
         id: "warehouseBeDate",
-        labelName: "jobDate",
+        labelName: "Select WareHouse BE Date",
         type: "textField",
-        name: "jobDate",
         width: "45%",
         placeholder: "Select WareHouse BE Date",
       },
@@ -276,17 +272,18 @@ const JobDetailSectionFields = [
   {
     fieldName: "Warehouse Code",
     id: "warehouseCode",
+    checked: false,
     fieldHeaders: [
       {
-        name: "Warehouse Code",
+        name: "Warehouse Code",width:'100%'
       },
      
     ],
-    checked: false,
+
     input: [
       {
         id: "warehouseCode",
-        labelName: "warehouseCode",
+        labelName: "Warehouse Code",
         type: "dropDown",
         name: "warehouseCode",
         width: "100%",
@@ -297,19 +294,19 @@ const JobDetailSectionFields = [
   {
     fieldName: "Customer Site ID",
     id: "customerSiteId",
+    checked: false,
     fieldHeaders: [
       {
-        name: "Customer Site ID",
+        name: "Customer Site ID",width:'100%'
       },
      
     ],
-    checked: false,
+    
     input: [
       {
         id: "customerSiteId",
-        labelName: "customerSiteId",
+        labelName: "Customer Site ID",
         type: "dropDown",
-        name: "customerSiteId",
         width: "100%",
         placeholder: "Customer Site ID",
       },
@@ -318,34 +315,34 @@ const JobDetailSectionFields = [
   {
     fieldName: "Packages Reloaded",
     id: "noOfPackagesReleased",
+    checked: false,
     fieldHeaders: [
       {
-        name: "Packages Reloaded",
+        name: "Packages Reloaded",width:'45%'
       },
-      { labelName: "CodeNumber", type: "separator", name: "", width: "5%" },
+      { type: "separator", name: "", width: "5%" },
       {
-        name: "code",
+        name: "Code",width:'45%'
       },
     ],
 
-    checked: false,
+   
     input: [
       {
         id: "noOfPackagesReleased",
-        labelName: "packagesReloaded",
+        labelName: "Packages Reloaded",
         type: "textField",
         name: "packagesReloaded",
         width: "45%",
         placeholder: "Packages Reloaded",
       },
-      { labelName: "CodeNumber", type: "separator", name: "", width: "5%" },
+      {  type: "separator", name: "", width: "5%" },
       {
         id: "packageCode",
-        labelName: "code",
+        labelName: "Code",
         type: "textField",
-        name: "code",
         width: "45%",
-        placeholder: "code",
+        placeholder: "Code",
       },
     ],
   },
@@ -356,11 +353,11 @@ const JobDetailSectionFields = [
     checked: false,
     fieldHeaders: [
       {
-        name: "Gross Weight",
+        name: "Gross Weight",width:'45%'
       },
       { labelName: "CodeNumber", type: "separator", name: "", width: "5%" },
       {
-        name: "UOM",
+        name: "UOM",width:'45%'
       },
     ],
     input: [
@@ -368,46 +365,43 @@ const JobDetailSectionFields = [
         id: "grossWeight",
         labelName: "grossWeight",
         type: "textField",
-        name: "grossWeight",
         width: "45%",
         placeholder: "Gross Weight",
       },
-      { labelName: "CodeNumber", type: "separator", name: "", width: "5%" },
+      {  type: "separator", name: "", width: "5%" },
       {
         id: "uom",
-        labelName: "code",
+        labelName: "Code",
         type: "textField",
-        name: "code",
         width: "45%",
-        placeholder: "code",
+        placeholder: "Code",
       },
     ],
   },
   {
     fieldName: "CB Details",
-
+    id: "cbDetails",
     checked: false,
 
-    id: "cbDetails",
+   
     fieldHeaders: [
       {
-        name: "CB Details",
+        name: "CB Details",width:'100%'
       },
      
     ],
     input: [
       {
         id: "cbName",
-        labelName: "broker",
+        labelName: "Select CB Name",
         type: "textField",
-        name: "brokerName",
         width: "45%",
         placeholder: "Select CB Name",
       },
-      { labelName: "CodeNumber", type: "separator", name: "", width: "5%" },
+      { type: "separator", name: "", width: "5%" },
       {
         id: "cbCode",
-        labelName: "customerCode",
+        labelName: "Select CB Code",
         type: "textField",
         name: "customerCode",
         width: "45%",
@@ -417,7 +411,6 @@ const JobDetailSectionFields = [
         id: "cbAddressLine",
         labelName: "Address 1",
         type: "textField",
-        name: "customerAddress1",
         width: "100%",
         placeholder: "Select CB Address",
       },
@@ -426,14 +419,13 @@ const JobDetailSectionFields = [
         id: "cbCity",
         labelName: "state",
         type: "dropDown",
-        name: "state",
         width: "45%",
         placeholder: "Select CB City",
       },
-      { labelName: "CodeNumber", type: "separator", name: "", width: "5%" },
+      { type: "separator", name: "", width: "5%" },
       {
         id: "cbPincode",
-        labelName: "pincode",
+        labelName: "Pincode",
         type: "textField",
         name: "pincode",
         width: "45%",
@@ -441,24 +433,22 @@ const JobDetailSectionFields = [
       },
       {
         id: "cbState",
-        labelName: "stateCode",
+        labelName: "Select State",
         type: "dropDown",
-        name: "stateCode",
         width: "45%",
         placeholder: "Select State ",
       },
-      { labelName: "CodeNumber", type: "separator", name: "", width: "5%" },
+      {  type: "separator", name: "", width: "5%" },
       {
         id: "cbCountry",
-        labelName: "country",
+        labelName: "Select Country",
         type: "dropDown",
-        name: "country",
         width: "45%",
         placeholder: "Select Country",
       },
       {
         id: "cbCode",
-        labelName: "uniqueId",
+        labelName: 'Select CB code',
         type: "textField",
         name: "uniqueId",
         width: "45%",
@@ -466,16 +456,14 @@ const JobDetailSectionFields = [
       },
       {
         id: "CodeNumber",
-        labelName: "CodeNumber",
         type: "separator",
         name: "",
         width: "5%",
       },
       {
         id: "cbBranch",
-        labelName: "companyName",
+        labelName: "Select CB Branch",
         type: "textField",
-        name: "companyName",
         width: "45%",
         placeholder: "Select CB Branch",
       },
@@ -487,7 +475,7 @@ const JobDetailSectionFields = [
     checked: false,
     fieldHeaders: [
       {
-        name: "Importer Details",
+        name: "Importer Details",width:'100%'
       },
      
     ],
@@ -496,60 +484,53 @@ const JobDetailSectionFields = [
     input: [
       {
         id: "importerIec",
-        labelName: "broker",
-        type: "textField",
-        name: "brokerName",
+        labelName: "Importer IEC",
+        type: "masterTextField",
         width: "45%",
         placeholder: "Select Importer IEC",
       },
-      { labelName: "CodeNumber", type: "separator", name: "", width: "5%" },
+      { type: "separator", name: "", width: "5%" },
       {
         id: "importerId",
-        labelName: "customerCode",
+        labelName: "Select Importer Id",
         type: "textField",
-        name: "customerCode",
         width: "45%",
         placeholder: "Select Importer Id",
       },
       {
         id: "importerName",
-        labelName: "City",
+        labelName: "Select Importer Name",
         type: "dropDown",
-        name: "state",
         width: "45%",
         placeholder: "Select Importer Name",
       },
-      { labelName: "CodeNumber", type: "separator", name: "", width: "5%" },
+      {  type: "separator", name: "", width: "5%" },
       {
         id: "importerBranch",
-        labelName: "pincode",
+        labelName: "Select Importer Branch",
         type: "textField",
-        name: "pincode",
         width: "45%",
         placeholder: "Select Importer Branch",
       },
       {
         id: "importerPanNo",
-        labelName: "City",
+        labelName: "Select Importer PAN No.",
         type: "dropDown",
-        name: "state",
         width: "100%",
         placeholder: "Select Importer PAN No.",
       },
       {
         id: "importType",
-        labelName: "City",
+        labelName: "Select Importer Typety",
         type: "dropDown",
-        name: "state",
         width: "45%",
         placeholder: "Select Importer Type",
       },
-      { labelName: "CodeNumber", type: "separator", name: "", width: "5%" },
+      { type: "separator", name: "", width: "5%" },
       {
         id: "adCode",
-        labelName: "pincode",
+        labelName: "Select Ad Code",
         type: "textField",
-        name: "pincode",
         width: "45%",
         placeholder: "Select Ad Code",
       },
@@ -571,16 +552,15 @@ const JobDetailSectionFields = [
       },
       {
         id: "importerCity",
-        labelName: "City",
+        labelName: "Select Importer City",
         type: "dropDown",
-        name: "state",
         width: "45%",
         placeholder: "Select Importer City",
       },
-      { labelName: "CodeNumber", type: "separator", name: "", width: "5%" },
+      {  type: "separator", name: "", width: "5%" },
       {
         id: "importerPincode",
-        labelName: "pincode",
+        labelName: "Select Pincode",
         type: "textField",
         name: "pincode",
         width: "45%",
@@ -588,18 +568,16 @@ const JobDetailSectionFields = [
       },
       {
         id: "importerState",
-        labelName: "stateCode",
+        labelName: "Select Importer State",
         type: "dropDown",
-        name: "stateCode",
         width: "45%",
         placeholder: "Select Importer State",
       },
-      { labelName: "CodeNumber", type: "separator", name: "", width: "5%" },
+      { type: "separator", name: "", width: "5%" },
       {
         id: "importerCountry",
-        labelName: "country",
+        labelName: "Select Country",
         type: "dropDown",
-        name: "country",
         width: "45%",
         placeholder: "Select Country",
       },
@@ -608,20 +586,20 @@ const JobDetailSectionFields = [
   {
     fieldName: "Transaction Ref No.",
     id: "transactionRefNo",
+    checked: false,
     fieldHeaders: [
       {
-        name: "Transaction Ref No.",
+        name: "Transaction Ref No.",width:'100%'
       },
      
     ],
 
-    checked: false,
+
     input: [
       {
         id: "transactionRefNo",
-        labelName: "transactionRefNo",
+        labelName: "Transaction Ref No.",
         type: "textField",
-        name: "transactionRefNo",
         width: "100%",
         placeholder: "Transaction Ref No.",
       },
@@ -632,7 +610,7 @@ const JobDetailSectionFields = [
     id: "customerRefNo",
     fieldHeaders: [
       {
-        name: "Customer Ref No.",
+        name: "Customer Ref No.",width:'100%'
       },
      
     ],
@@ -641,9 +619,8 @@ const JobDetailSectionFields = [
     input: [
       {
         id: "customerRefNo",
-        labelName: "customerRefNo",
+        labelName: "Customer Ref No.",
         type: "textField",
-        name: "customerRefNo",
         width: "100%",
         placeholder: "Customer Ref No.",
       },
@@ -654,7 +631,7 @@ const JobDetailSectionFields = [
     id: "portOfOrigin",
     fieldHeaders: [
       {
-        name: "Port Of Loading",
+        name: "Port Of Loading",width:'100%'
       },
      
     ],
@@ -663,9 +640,8 @@ const JobDetailSectionFields = [
     input: [
       {
         id: "portOfOrigin",
-        labelName: "portOfLoading",
+        labelName: "Select Port Of Origin",
         type: "dropDown",
-        name: "portOfLoading",
         width: "100%",
         placeholder: "Select Port Of Origin",
       },
@@ -676,7 +652,7 @@ const JobDetailSectionFields = [
     id: "portOfShipment",
     fieldHeaders: [
       {
-        name: "Port Of Destination",
+        name: "Port Of Destination",width:'100%'
       },
      
     ],
@@ -685,9 +661,8 @@ const JobDetailSectionFields = [
     input: [
       {
         id: "portOfShipment",
-        labelName: "portOfDestination",
+        labelName: "Port of Destination",
         type: "dropDown",
-        name: "portOfDestination",
         width: "100%",
         placeholder: "Port of Destination",
       },
@@ -698,7 +673,7 @@ const JobDetailSectionFields = [
     id: "countryOfOrigin",
     fieldHeaders: [
       {
-        name: "Country of Origin",
+        name: "Country of Origin",width:'100%'
       },
      
     ],
@@ -707,9 +682,8 @@ const JobDetailSectionFields = [
     input: [
       {
         id: "countryOfOrigin",
-        labelName: "countryOfOrigin",
+        labelName: "Country of Origin",
         type: "dropDown",
-        name: "countryOfOrigin",
         width: "100%",
         placeholder: "Country of Origin",
       },
@@ -720,7 +694,7 @@ const JobDetailSectionFields = [
     id: "countryOfConsignment",
     fieldHeaders: [
       {
-        name: "Country of Consignment",
+        name: "Country of Consignment",width:'100%'
       },
      
     ],
@@ -731,7 +705,6 @@ const JobDetailSectionFields = [
         id: "countryOfConsignment",
         labelName: "Country of Consignment",
         type: "dropDown",
-        name: "countryOfConsignment",
         width: "100%",
         placeholder: "Country of Consignment",
       },
@@ -743,11 +716,11 @@ const JobDetailSectionFields = [
     id: "ucrNo",
     fieldHeaders: [
       {
-        name: "UCR No.",
+        name: "UCR No.",width:'45%'
       },
-      { labelName: "CodeNumber", type: "separator", name: "", width: "5%" },
+      { type: "separator", name: "", width: "5%" },
       {
-        name: "UCR Type",
+        name: "UCR Type",width:'45%'
       },
     ],
 
@@ -757,16 +730,14 @@ const JobDetailSectionFields = [
         id: "ucrNo",
         labelName: "UCR No.",
         type: "textField",
-        name: "ucrNo",
         width: "45%",
         placeholder: "UCR No.",
       },
-      { labelName: "CodeNumber", type: "separator", name: "", width: "5%" },
+      { type: "separator", name: "", width: "5%" },
       {
         id: "ucrType",
         labelName: "UCR Type",
         type: "textField",
-        name: "ucrType",
         width: "45%",
         placeholder: "UCR Type",
       },
@@ -777,7 +748,7 @@ const JobDetailSectionFields = [
     id: "priorBe",
     fieldHeaders: [
       {
-        name: "Prior BE",
+        name: "Prior BE",width:'100%'
       },
      
     ],
@@ -786,9 +757,8 @@ const JobDetailSectionFields = [
     input: [
       {
         id: "priorBe",
-        labelName: "priorBe",
+        labelName: "Prior BE",
         type: "textField",
-        name: "priorBe",
         width: "100%",
         placeholder: "Prior BE",
       },
@@ -801,7 +771,7 @@ const JobDetailSectionFields = [
     checked: false,
     fieldHeaders: [
       {
-        name: "Kacha BE",
+        name: "Kacha BE",width:'100%'
       },
      
     ],
@@ -811,7 +781,6 @@ const JobDetailSectionFields = [
         id: "kachchabe",
         labelName: "Kacha BE",
         type: "toggle",
-        name: "kachaBe",
         width: "100%",
         placeholder: "Kacha BE",
       },
@@ -824,29 +793,27 @@ const JobDetailSectionFields = [
     checked: false,
     fieldHeaders: [
       {
-        name: "Hss Transaction",
+        name: "Hss Transaction",width:'45%'
       },
-      { labelName: "CodeNumber", type: "separator", name: "", width: "5%" },
+      { type: "separator", name: "", width: "5%" },
       {
-        name: "Charges",
+        name: "Charges",width:'45%'
       },
     ],
     input: [
       {
         id: "hssTransaction",
-        labelName: "hssTransaction",
+        labelName: "Value",
         type: "textField",
-        name: "hssTransaction",
         width: "45%",
         placeholder: "Value",
       },
-      { labelName: "CodeNumber", type: "separator", name: "", width: "5%" },
+      { type: "separator", name: "", width: "5%" },
 
       {
         id: "additionalChargesHSS",
-        labelName: "charges",
+        labelName: "Value",
         type: "textField",
-        name: "charges",
         width: "45%",
         placeholder: "Value",
       },
@@ -857,7 +824,7 @@ const JobDetailSectionFields = [
     id: "greenChannel",
     fieldHeaders: [
       {
-        name: "Green Channel",
+        name: "Green Channel",width:'100%'
       },
       
     ],
@@ -868,7 +835,6 @@ const JobDetailSectionFields = [
         id: "greenChannel",
         labelName: "Green Channel",
         type: "toggle",
-        name: "greenChannel",
         width: "100%",
         placeholder: "Green Channel",
       },
@@ -881,14 +847,14 @@ const JobDetailSectionFields = [
     checked: false,
     fieldHeaders: [
       {
-        name: "Section 48",
+        name: "Section 48",width:'100%'
       },
       
     ],
     input: [
       {
         id: "section48",
-        labelName: "Green Channel",
+        labelName: "Section 48",
         type: "toggle",
         name: "section48",
         width: "100%",
@@ -903,23 +869,22 @@ const JobDetailSectionFields = [
     checked: false,
     fieldHeaders: [
       {
-        name: "First Check",
+        name: "First Check",width:'100%'
       },
       
     ],
     input: [
       {
         id: "firstCheckRequested",
-        labelName: "firstCheckRequested",
+        labelName: "First Check Requested",
         type: "toggle",
-        name: "firstCheckRequested",
         width: "100%",
         placeholder: "First Check Requested",
       },
 
       {
         id: "firstCheckReason",
-        labelName: "firstCheckReason",
+        labelName: "Reason",
         type: "textField",
         name: "firstCheckReason",
         width: "100%",
@@ -934,7 +899,7 @@ const JobDetailSectionFields = [
     checked: false,
     fieldHeaders: [
       {
-        name: "Miscellaneous Load",
+        name: "Miscellaneous Load",width:'100%'
       },
       
     ],
@@ -943,7 +908,6 @@ const JobDetailSectionFields = [
         id: "Miscellaneous Load",
         labelName: "Miscellaneous Load",
         type: "textField",
-        name: "Miscellaneous Load",
         width: "100%",
         placeholder: "Miscellaneous Load",
       },
@@ -954,7 +918,7 @@ const JobDetailSectionFields = [
     id: "paymentMethodCode",
     fieldHeaders: [
       {
-        name: "Payment Method Code",
+        name: "Payment Method Code",width:'100%'
       },
       
     ],
@@ -978,16 +942,15 @@ const JobDetailSectionFields = [
     checked: false,
     fieldHeaders: [
       {
-        name: "Total Assesable Value",
+        name: "Total Assesable Value",width:'100%'
       },
       
     ],
     input: [
       {
         id: "totalAssessableValue",
-        labelName: "totalAssessableValue",
+        labelName: "Total Assesable Value",
         type: "textField",
-        name: "totalAssessableValue",
         width: "100%",
         placeholder: "Total Assesable Value",
       },
@@ -1000,7 +963,7 @@ const JobDetailSectionFields = [
     checked: false,
     fieldHeaders: [
       {
-        name: "Total Duty",
+        name: "Total Duty",width:'100%'
       },
       
     ],

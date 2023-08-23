@@ -39,7 +39,7 @@ export default class ImportJobDetails extends Component {
      
 
       let updatedSectionFields = JobDetailSectionFields.map(item => {
-        console.log(item)
+        
         
         let inputWithId = item.input.find(input => data?.document[input.id]);
        
@@ -70,6 +70,8 @@ export default class ImportJobDetails extends Component {
             jobId={this.state.jobId}
             selectedJobData={this.state.selectedJobData}
             jobDetailsSectionFields={this.state.jobDetailsSectionFields}
+            //jobDetailsSectionFields={JobDetailSectionFields} // hardCoded
+
           />
         ) : this.props.tabName === "Files" ? (
           <p style={{ marginTop: "60px" }}>Files</p>

@@ -11,6 +11,8 @@ import NotFound from "../../assests/images/NotFound.svg";
 import AddIcon from "@mui/icons-material/Add";
 import MultiChipText from "../../inputs/MultiChip";
 import ToggleSwitch from "../../inputs/ToggleSwitch";
+import MasterTextFields from "../../inputs/MasterTextField";
+import MasterSelection from "../../inputs/MasterSelection";
 
 const useStyles = makeStyles((theme) => ({
   iconStyle: {
@@ -40,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "2px",
   },
   paragraph1: {
-    width: "45%",
+  
     fontFamily: "Inter !important",
     fontStyle: "normal !important",
     fontWeight: "400 !important",
@@ -83,22 +85,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ReusableBody(props) {
-  const { fields, values, handleDataUpdate, setFields, propData } = props;
-  let fieldsCount =
-    fields && fields.length > 0
-      ? fields?.filter((item) => item.checked).length
-      : 0;
+  const { fields, values, handleDataUpdate, setFields, propData,partyMasterData } = props;
+
+
+  let fieldsCount =fields && fields.length > 0 ? fields?.filter((item) => item.checked).length : 0;
 
   const classes = useStyles();
   return (
     <div
-      style={{ height: "90vh", backgroundColor: "#F6F9FF", marginTop: "48px" }}
+      style={{ height:'auto', backgroundColor: "#F6F9FF", marginTop: "48px",width:'1206px',display:'flex',flexDirection:'column',justifyContent:'center'}}
     >
+      
       <div
         style={{
           backgroundColor: "#F6F9FF",
           display: "flex",
-          borderTop: "2px solid #EFF0F1",
           padding: "24px",
           paddingTop: "24px",
           justifyContent: "center",
@@ -113,6 +114,8 @@ function ReusableBody(props) {
             setFilterFields={setFields}
             handleData={props.handleData}
             filterName="Add Details"
+            top='0px'
+           
           />
         </div>
         <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
@@ -139,11 +142,13 @@ function ReusableBody(props) {
           </span>
         </div>
       </div>
+    
       <DialogContent
         style={{
           backgroundColor: "#F6F9FF",
-          paddingLeft: "24px",
-          paddingRight: "24px",
+          // display:'flex',
+          // justifyContent:'center',
+        
           paddingTop: "0px",
           paddingBottom: "24px",
         }}
@@ -159,6 +164,7 @@ function ReusableBody(props) {
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
+                
               }}
             >
               <img src={NotFound} alt="404" className="errorImg" />
@@ -192,9 +198,9 @@ function ReusableBody(props) {
               style={{
                 backgroundColor: "#ffffff",
                 height: "auto",
-                maxHeight: props.height,
+                //maxHeight: props.height,
                 overflowY: "auto",
-                width: "100%",
+               // width: "1206px",
                 marginLeft: "0px",
                 justifyContent: "space-between",
                 marginTop: "0px",
@@ -226,7 +232,7 @@ function ReusableBody(props) {
                         (inputField, inputIndex) => {
                           if (inputField.type !== "separator") {
                             return (
-                              <Typography className={classes.paragraph1}>
+                              <Typography className={classes.paragraph1} style={{width:inputField.width}}>
                                 {inputField.name}
                               </Typography>
                             );
@@ -269,10 +275,9 @@ function ReusableBody(props) {
                       >
                         {sectionField.input.map((inputField, inputIndex) => {
                             
-                             let propData2 = { ...props.propData,fieldKey:inputField.id}
-                             
-
-                          let inputValue = values[inputField.id];
+                            let propData2 = { ...props.propData,fieldKey:inputField.id}
+                             let inputValue = values[inputField.id];
+                         
                          
                           if (inputField.type === "textField") {
                             return (
@@ -282,10 +287,10 @@ function ReusableBody(props) {
                                 disableLine={true}
                                 name={inputField.name}
                                 value={inputValue || ""}
-                                propData={propData2}
+                               propData={propData2}
                                 handledata={handleDataUpdate}
                                 placeholder={inputField.placeholder}
-                                id={sectionField.id}
+                                id={inputField.id}
                                 error={
                                   inputValue !== "" && inputField.cndSatisfied
                                     ? false
@@ -302,7 +307,43 @@ function ReusableBody(props) {
                                 }}
                               />
                             );
-                          } else if (inputField.type === "dropDown") {
+                          } 
+                          if (inputField.type === "masterTextField") {
+                            return (
+                              <MasterTextFields
+                              keyName={inputField.id}
+                                variant="standard"
+                                disableLine={true}
+                                name={inputField.name}
+                                value={inputValue || ""}
+                               propData={propData2}
+                                handledata={handleDataUpdate}
+                                placeholder={inputField.placeholder}
+                                id={inputField.id}
+                                error={
+                                  inputValue !== "" && inputField.cndSatisfied
+                                    ? false
+                                    : inputField.error
+                                }
+                                mandatory={
+                                  inputValue !== "" && inputField.cndSatisfied
+                                    ? false
+                                    : inputField.mandatory
+                                }
+                                style={{
+                                  width: inputField.width,
+                                  marginBottom: "12px",
+                                 
+                                 
+                                }}
+                                partyMasterData={props.partyMasterData}
+                                handleSelectedRowData={props.handleSelectedRow}
+                              />
+                            );
+                          }
+                          
+                          
+                          else if (inputField.type === "dropDown") {
                             return (
                               <AutoComplete
                               keyName={inputField.id}
@@ -311,7 +352,7 @@ function ReusableBody(props) {
                                 popUpHover={true}
                                 variant="standard"
                                 handledata={handleDataUpdate}
-                                id={sectionField.id}
+                                id={inputField.id}
                                 option={inputField.option}
                                 error={
                                   inputValue !== "" && inputField.cndSatisfied
@@ -330,14 +371,18 @@ function ReusableBody(props) {
                                   position: "relative",
                                   width: inputField.width,
                                   marginBottom: "12px",
+                                  
                                 }}
                               />
                             );
                           } else if (inputField.type === "multiChipText") {
-                            return <MultiChipText style={{ width: "100%" }} propData={propData2}    keyName={inputField.id}/>;
+                            return <MultiChipText style={{ width: "100%" }}    keyName={inputField.id}   id={inputField.id} propData={propData2} />; 
+                            
                           } else if (inputField.type === "toggle") {
-                            return <ToggleSwitch toggle={true} propData={propData2}    keyName={inputField.id}/>;
-                          } else if (inputField.type === "separator") {
+                            return <ToggleSwitch toggle={true}   keyName={inputField.id}   id={inputField.id} propData={propData2} />;
+                            
+                          }
+                           else if (inputField.type === "separator") {
                             return (
                               <div
                                 style={{

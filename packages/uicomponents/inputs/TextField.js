@@ -5,6 +5,7 @@ import { makeStyles } from "@mui/styles";
 import errorImg from '../assests/images/errorImg.svg'
 import eventBus from '../../apiIntegration/WebSocket/eventBus';	
 import webSocketSendData from '../../apiIntegration/WebSocket/webSocketSendData';
+import { valid } from 'joi';
 //import { boolean } from 'joi';
 
 const useStyles = makeStyles((theme) => ({
@@ -122,12 +123,13 @@ const useStyles = makeStyles((theme) => ({
 const TextFields = (props) => {
   const classes = useStyles(props.styles);
   const {size,variant, placeholder, mandatory, iconType, helperText, showEndAdornment, showStartAdornment, isDisabled,disableLine,isNormalField ,style,name,id,className ,error, value} = props
-   const { ws, jobId, isWebSocketAlive, fieldKey, userId } = props.propData
- console.log('propData in TextField',props.propData)
+  const { propData = {} } = props;
+  const { ws = '', jobId = '', isWebSocketAlive = '', fieldKey = '', userId = '' } = propData;
+ 
   
   const [isEntering, setEntering] = useState(false)
   const [read, setRead] = React.useState(false)
-  const [data, setData] = useState(value)
+  const [data, setData] = useState(value?value:'')
   const [disable, setDisable] = React.useState(disableLine)
   
  
@@ -143,24 +145,33 @@ const TextFields = (props) => {
   }, [fieldKey])
 
 
+
   const handleMouseEnter = () => {
+    
     if (isDisabled!==true && disable === true) {
       setDisable(false)
     }
+  
   };
 
   const handleMouseLeave = () => {
+    
     if (disable === false) {
       setDisable(true)
     }
+  
   };
 
   const handleChange = event => {
     setEntering(true)
     setData(event.target.value)
+    
     if (disable === true) {
       setDisable(false)
-    }
+    
+  }
+    props.handledata(id,event.target.value)
+    
   }
 
   const handleOnBlur = (event) => {
@@ -168,8 +179,11 @@ const TextFields = (props) => {
     setData(event.target.value)
    const wssData = { jobId: jobId, userId: userId, initialValue: data, changedValue: event.target.value, field: fieldKey, ws }
    webSocketSendData(wssData)
+   
     setDisable(true)
+   
     setEntering(false)
+    props.handledata(id,event.target.value)
   }
 
   return (

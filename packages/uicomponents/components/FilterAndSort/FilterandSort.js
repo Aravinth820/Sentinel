@@ -257,6 +257,19 @@ const useStyles = makeStyles({
   width: "16px !important",
   marginLeft: "6px !important",
  },
+ DialogBox:{
+  position:"fixed !important",
+  marginTop:'-2px',
+  zIndex: "999"
+
+ },
+ JobDetailsBox:{
+  position:"relative !important",
+  top:'24px',
+  zIndex: "999",
+  left:'-95px'
+
+ }
   
  })
  
@@ -276,7 +289,7 @@ const useStyles = makeStyles({
  </Box>)}
  
  export default function FilterAndSort(props) {
-  const {listData, filterName, icon, data, transform, boxPosition, ArrowPlaced, top, fieldName} = props
+  const {listData, filterName, icon, data, transform, boxPosition, ArrowPlaced, top,position, fieldName} = props
   const [dateSelected, setDateSelected] = useState('')
   const [date, setDate] = useState('')
   const [isChecked, setCheckedStatus] = useState(false)
@@ -305,6 +318,7 @@ const useStyles = makeStyles({
   
   const handleOpen= ()=>{
   setOpenDialog(!openDialog)
+  
   setSearchListItems(listData)
   }
  
@@ -362,13 +376,14 @@ const useStyles = makeStyles({
   {icon}
   {(filterName === 'Add Details' || filterName === 'Add Sections') && <p className={classes.paragraph3}>{filterName}</p>}
   </Grid> : <FilterListIcon className={classes.filterIcon} onClick={handleOpen}/>}
-  <Grid style={{position: "fixed", marginTop: "-2px",zIndex: "999"}}>
+  {/* <Grid style={{position:position?position:"fixed", marginTop: "-2px" ,zIndex: "999"}}>  */}
+  <Grid className={data?.id==='JobDetails'?classes.JobDetailsBox:classes.DialogBox}>
   <Popover
   className = {classes.popover}
   open={openDialog}
   setOpen={setOpenDialog}
   height='auto'
-  ArrowPosition={data?.filterType === 'date' ? '194px': (data?.id == 'createdBy' || data?.id === 'update' || data.id === 'time' ||data.id==='JobDetails' || data.id === 'status')? data.ArrowPosition: "16px"} 
+  ArrowPosition={data?.filterType === 'date' ? '194px': (data?.id == 'createdBy' || data?.id === 'update' || data.id === 'time' || data.id === 'status')? data.ArrowPosition: "16px"} 
   //anchorOrigin={{ vertical: 'top', horizontal: 'top' }}
   transform={transform}
   boxPosition={boxPosition}
