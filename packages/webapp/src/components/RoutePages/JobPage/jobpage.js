@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import ListTable from "../../../../../uicomponents/components/jobpage/joblistTable"
 import importColumns from "../../../../../uicomponents/sectionfields/jobPageImportSectionFields"
 import { navigate } from "@reach/router"
-
+import { getIndexedMasterData }from './getIndexedDB'
 import UnfoldLessOutlinedIcon from "@mui/icons-material/UnfoldLessOutlined"
 import HighlightOffRoundedIcon from "@mui/icons-material/HighlightOffRounded"
 import WarningOutlinedIcon from "@mui/icons-material/WarningOutlined"
@@ -21,18 +21,24 @@ export default class MyJobs extends Component {
       fullAccordianOpen: false,
       scrolledListData: [],
       loading: true,
+      openDrawer:false,
+      masterData:null
     }
   }
 
   async componentDidMount() {
     const apiUrl =
       "https://api.allegro.sentinel.unifo.in/api/job/v2/import/getAllJobs?jobType=IMPORT"
+
     try {
+      let options =  await getIndexedMasterData()
+      this.setState({masterData:options})
       const response = await fetch(apiUrl, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
+        
       })
 
       if (!response.ok) {
@@ -45,9 +51,11 @@ export default class MyJobs extends Component {
         loading: false,
       }))
       console.log('data',data?.documents)
+   
     } catch (error) {
       console.error("There was a problem with the fetch operation:", error)
     }
+    
   }
 
   toggleAccordion = () => {
@@ -63,6 +71,12 @@ export default class MyJobs extends Component {
       navigate("/app/jobs/import?id=" + data.jobNo + "&jobType=" + "import"+ "&jobId=" + data._id)
     }
   }
+
+
+  handleOpenDrawerClose = () => {
+    this.setState({openDrawer: !this.state.openDrawer})
+  }
+  
   render() {
     return (
       <>
@@ -88,7 +102,7 @@ export default class MyJobs extends Component {
             disabled: false,
             classProperties: "Create-Job-btn",
             text: "Create Job",
-            onClick: () => "button clicked",
+            onClick: () => this.handleOpenDrawerClose(),
           }}
           auditIcons={[
             { component: HighlightOffRoundedIcon, color: "red" },
@@ -104,6 +118,9 @@ export default class MyJobs extends Component {
             backgroundColor: "#F6F9FF",
             border: "1px solid #EFF0F1",
           }}
+          openDrawer = {this.state.openDrawer}
+          handleOpenDrawerClose = {this.handleOpenDrawerClose}
+          masterData = {this.state.masterData}
         />
         <ListTable
           listData={this.state.scrolledListData}

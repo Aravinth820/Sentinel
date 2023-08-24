@@ -108,9 +108,9 @@ const MultiChipText = (props) => {
   const [disable, setDisable] = React.useState(true)
   const [data , setData] = React.useState("")
 
-  const handleBlur = (event) => {
+  const handleBlur = (value) => {
     setDisable(false)
-    addChip()
+    addChip(value[0])
     const wssData = { jobId: jobId, userId: userId, initialValue: data, changedValue: event.target.value, field: fieldKey, ws }
    webSocketSendData(wssData)
   }
@@ -143,13 +143,13 @@ const MultiChipText = (props) => {
       <Autocomplete
       key={props.keyName}
         multiple
-        freeSolo
+        // freeSolo
         onBlur={handleBlur}
         value={chips}
-        onChange={(event, newValue) => handleBlur(event)}
+        onChange={(event, value) => handleBlur(event , value)}
         inputValue={inputValue}
         onInputChange={(event, newInputValue) => setInputValue(newInputValue)}
-        options={[]}
+        options={["Aravinth"]}
         className= {variant === 'normal' ? classes.autoCompleteRoot1 : classes.autoCompleteRoot}
         style={{display: 'inline',...style}}
         renderTags={(value, getTagProps) =>
@@ -184,6 +184,7 @@ const MultiChipText = (props) => {
           <TextField
             {...params}
             className= {classes.textFieldRoot}
+           
             style={{...style}}
             onBlur={handleBlur}
             variant="filled"

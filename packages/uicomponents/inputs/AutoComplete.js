@@ -251,13 +251,13 @@ const AutoComplete = (props) => {
     setEntering(true)
       if (value === null) {
         setData(value);
-        props.handledata(id, name, value,event);
+        props.handledata(name, value,event);
       } else if (typeof value === "string") {
         setData({
           title: value,
         }
       );
-     props.handledata(id, name, value,event);
+     props.handledata(name, value,event);
       } else if (value && value.inputValue) {
         setData({
           title: value.inputValue,
@@ -265,7 +265,7 @@ const AutoComplete = (props) => {
 
         
         );
-        props.handledata(id, name, value.inputValue,event);
+        props.handledata(name, value.inputValue,event);
       } else {
         setData(value);
       }
@@ -290,7 +290,6 @@ const AutoComplete = (props) => {
         }
         popupIcon={<KeyboardArrowDownIcon />}
         style={{ ...style }}
-        
         options={option?.length > 0 ? option.map((option) => option.value) : []}
         onChange={(event, value) => handleChange(event, value)}
         classes={{

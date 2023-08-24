@@ -80,6 +80,9 @@ const useStyles = makeStyles((theme) => ({
     "& .MuiInput-root:after": {
       borderBottom: "1px solid  #3874FF !important",
     },
+    // '&:not(:hover):not(.Mui-disabled):before': {
+    //   borderBottom: "1px solid #EFF0F1",
+    // },
   },
   underline: {
     '&:hover:not(.Mui-disabled):before': {
@@ -153,7 +156,7 @@ const TextFields = (props) => {
 
   const handleMouseLeave = () => {
     if (disable === false) {
-      setDisable(true)
+      setDisable(false)
     }
   };
 
@@ -166,15 +169,17 @@ const TextFields = (props) => {
   }
 
   const handleOnBlur = (event) => {
-
+ 
     setData(event.target.value)
    const wssData = { jobId: jobId, userId: userId, initialValue: initialValue, changedValue: data, field: fieldKey, ws }
    webSocketSendData(wssData)
-    setDisable(true)
+    setDisable(false)
     setEntering(false)
     setInitialValue(event.target.value)
+    if(props.underline === false){
+      setDisable(false)
+    }
   }
-
   return (
     <TextField
      key={props.keyName}

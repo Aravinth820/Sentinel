@@ -1,0 +1,20 @@
+<svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Icon">
+<path id="Rectangle 1509" d="M1 0.149999L9.93787 0.149999L13.85 4.06213L13.85 10.8L13.85 17C13.85 17.4694 13.4694 17.85 13 17.85L0.999999 17.85C0.530558 17.85 0.149999 17.4694 0.149999 17L0.15 1C0.15 0.530558 0.530558 0.149999 1 0.149999Z" fill="url(#paint0_linear_2139_9195)" stroke="url(#paint1_linear_2139_9195)" stroke-width="0.3"/>
+<path id="Vector 87" d="M10 4V0L14 4H10Z" fill="url(#paint2_linear_2139_9195)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_2139_9195" x1="12.5" y1="18" x2="0.999999" y2="2.5" gradientUnits="userSpaceOnUse">
+<stop stop-color="#798DF7"/>
+<stop offset="1" stop-color="#8EBBFF"/>
+</linearGradient>
+<linearGradient id="paint1_linear_2139_9195" x1="14" y1="9" x2="-3.93402e-07" y2="9" gradientUnits="userSpaceOnUse">
+<stop stop-color="#657DBD"/>
+<stop offset="1" stop-color="#8CB5FE"/>
+</linearGradient>
+<linearGradient id="paint2_linear_2139_9195" x1="11.5" y1="2" x2="9.5" y2="4.5" gradientUnits="userSpaceOnUse">
+<stop stop-color="#C1D4FF"/>
+<stop offset="0.708466" stop-color="#C1D4FF" stop-opacity="0"/>
+</linearGradient>
+</defs>
+</svg>

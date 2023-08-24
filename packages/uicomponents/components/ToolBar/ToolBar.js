@@ -11,7 +11,7 @@ import FilterList from '../../assests/images/filter_list.svg'
 import ArrowDown from '../../assests/images/arrow_dropdown.svg'
 import ArrowUp from '../../assests/images/arrowup_dropdown.svg'
 import ClearIcon from '@mui/icons-material/Clear';
-
+import CreateJob from '../CreateJob/CreateJob';
 const useStyles = makeStyles((theme) => ({
     appBar: {
         '&.MuiAppBar-root': {
@@ -612,7 +612,7 @@ const myArray = [
 
 
 
-const ToolBarReusable = ({ data, buttonComponent, buttonComponent1, searchBox, auditIcons, auditValues, handleIconClick }) => {
+const ToolBarReusable = ({ data, buttonComponent, buttonComponent1, searchBox, auditIcons, auditValues, handleIconClick, openDrawer, handleOpenDrawerClose, masterData }) => {
     const { icons, disabledIcons, dividerIndices, group, scenario, selectionIcon, isTextDisabled, isButtonGrp, filter } = data
 
     console.log('buttoncomponent', buttonComponent);
@@ -675,6 +675,7 @@ const ToolBarReusable = ({ data, buttonComponent, buttonComponent1, searchBox, a
     return (
         <AppBar position="static" color="default" className={classes.appBar} style={{marginTop:data?.name==='jobListPage'?'47px':''}}>
             <Toolbar className={classes.toolbar} >
+                <CreateJob openDrawer ={openDrawer} handleOpenDrawerClose={handleOpenDrawerClose} masterData = {masterData}/>
                 <Box className={classes.TextIconBox}>
                     {selectionIcon && (
                         <IconButton className={classes.IconButton}>

@@ -440,7 +440,7 @@ const useStyles = makeStyles({
   open={openDialog}
   setOpen={setOpenDialog}
   height='auto'
-  ArrowPosition={data?.filterType === 'date' ? '194px': (data?.id == 'createdBy' || data?.id === 'update' || data.id === 'time' ||data.id==='JobDetails' || data.id === 'status')? data.ArrowPosition: "16px"} 
+  ArrowPosition={data?.filterType === 'date' ? '194px': (data?.id == 'createdBy' || data?.id === 'update' || data.id === 'time' ||data.id==='JobDetails' || data.id === 'jobStatus' || data.id==="assignedTo")? data.ArrowPosition: "16px"} 
   //anchorOrigin={{ vertical: 'top', horizontal: 'top' }}
   transform={transform}
   boxPosition={boxPosition}
